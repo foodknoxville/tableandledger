@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table & Ledger — AI Consulting for Restaurant Operations</title>
+    <meta name="description" content="Donnie McClanahan bridges the gap between restaurant operations and practical AI implementation. Not hype. Not theory. Operational results.">
+    <meta name="author" content="Donnie McClanahan">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Table & Ledger — AI Consulting for Restaurant Operations">
+    <meta property="og:description" content="Practical AI implementation for food service operators. From someone who actually runs the restaurants.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tableandledger.com">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --ink: #1a1a18;
+            --paper: #f5f2ed;
+            --rust: #b5451b;
+            --rust-light: #d4693a;
+            --slate: #4a4a48;
+            --warm-gray: #8a8780;
+            --rule: #d4d0c8;
+            --highlight: #fef3e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 18px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Sans 3', Georgia, serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- NOISE TEXTURE OVERLAY --- */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* --- LAYOUT --- */
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* --- HEADER / MASTHEAD --- */
+        header {
+            padding: 3rem 0 2rem;
+            border-bottom: 2px solid var(--ink);
+        }
+
+        .masthead {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .brand {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 2rem;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+            text-decoration: none;
+            line-height: 1.1;
+        }
+
+        .brand span {
+            color: var(--rust);
+        }
+
+        .tagline {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--warm-gray);
+        }
+
+        /* --- NAV --- */
+        nav {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--rule);
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--slate);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--rust);
+        }
+
+        /* --- HERO --- */
+        .hero {
+            padding: 4rem 0 3rem;
+        }
+
+        .hero h1 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 2.8rem;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            max-width: 680px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--rust);
+        }
+
+        .hero-lede {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--slate);
+            max-width: 600px;
+            font-weight: 300;
+        }
+
+        /* --- SECTION DIVIDERS --- */
+        .rule {
+            border: none;
+            border-top: 1px solid var(--rule);
+            margin: 0;
+        }
+
+        .rule--heavy {
+            border-top: 2px solid var(--ink);
+        }
+
+        /* --- SECTION --- */
+        section {
+            padding: 3rem 0;
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--rust);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        section h2 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 1.6rem;
+            line-height: 1.3;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.01em;
+        }
+
+        section p {
+            color: var(--slate);
+            margin-bottom: 1rem;
+            max-width: 640px;
+        }
+
+        section p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* --- CREDENTIALS GRID --- */
+        .credentials {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem 3rem;
+            margin-top: 2rem;
+        }
+
+        .credential {
+            padding: 1.25rem 0;
+            border-top: 1px solid var(--rule);
+        }
+
+        .credential-source {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--warm-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .credential h3 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 1.05rem;
+            line-height: 1.4;
+            margin-bottom: 0.4rem;
+        }
+
+        .credential p {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: var(--slate);
+        }
+
+        .credential a {
+            color: var(--rust);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .credential a:hover {
+            border-bottom-color: var(--rust);
+        }
+
+        /* --- ABOUT / BIO --- */
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2.5rem;
+            align-items: start;
+            margin-top: 1.5rem;
+        }
+
+        .bio-photo {
+            width: 200px;
+            height: 240px;
+            background: var(--rule);
+            border: 1px solid var(--rule);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            color: var(--warm-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .bio-text p {
+            margin-bottom: 1rem;
+        }
+
+        .bio-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--rule);
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-number {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 1.8rem;
+            color: var(--ink);
+            line-height: 1.1;
+        }
+
+        .stat-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--warm-gray);
+            margin-top: 0.25rem;
+        }
+
+        /* --- WHAT I DO --- */
+        .services {
+            margin-top: 1.5rem;
+        }
+
+        .service {
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--rule);
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 2rem;
+        }
+
+        .service-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink);
+            padding-top: 0.15rem;
+        }
+
+        .service p {
+            font-size: 0.9rem;
+            color: var(--slate);
+        }
+
+        /* --- QUOTE / PULLQUOTE --- */
+        .pullquote {
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .pullquote blockquote {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.5;
+            color: var(--ink);
+            max-width: 600px;
+            margin: 0 auto 1rem;
+        }
+
+        .pullquote cite {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--warm-gray);
+            font-style: normal;
+        }
+
+        /* --- CONTACT --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-method {
+            padding: 1.25rem 0;
+            border-top: 1px solid var(--rule);
+        }
+
+        .contact-method .contact-type {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--warm-gray);
+            margin-bottom: 0.4rem;
+        }
+
+        .contact-method a {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 1.1rem;
+            color: var(--ink);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .contact-method a:hover {
+            color: var(--rust);
+            border-bottom-color: var(--rust);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 2rem 0;
+            border-top: 2px solid var(--ink);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        footer p {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--warm-gray);
+        }
+
+        /* --- ANIMATIONS --- */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.6s ease forwards;
+        }
+
+        .fade-up:nth-child(2) { animation-delay: 0.1s; }
+        .fade-up:nth-child(3) { animation-delay: 0.2s; }
+        .fade-up:nth-child(4) { animation-delay: 0.3s; }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 700px) {
+            html { font-size: 16px; }
+
+            .hero h1 { font-size: 2rem; }
+
+            .credentials {
+                grid-template-columns: 1fr;
+            }
+
+            .bio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bio-photo {
+                width: 140px;
+                height: 170px;
+            }
+
+            .service {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .masthead {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+
+            nav {
+                gap: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <header>
+            <div class="masthead">
+                <a href="/" class="brand">Table <span>&</span> Ledger</a>
+                <span class="tagline">AI Consulting for Restaurant Operations</span>
+            </div>
+        </header>
+
+        <nav>
+            <a href="#about">About</a>
+            <a href="#work">Published Work</a>
+            <a href="#services">What I Do</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <!-- HERO -->
+        <section class="hero">
+            <h1 class="fade-up">The restaurant line was <em>distributed computing</em> before anyone called it that.</h1>
+            <p class="hero-lede fade-up">I'm Donnie McClanahan — multi-location food service operator, Square AI Champion, and the person bridging the gap between restaurant operations and practical AI implementation. Not hype. Not theory. Operational results.</p>
+        </section>
+
+        <hr class="rule rule--heavy">
+
+        <!-- ABOUT -->
+        <section id="about" class="reveal">
+            <span class="section-label">About</span>
+            <div class="bio-grid">
+                <div class="bio-photo">Photo</div>
+                <div class="bio-text">
+                    <p>I've spent 11 years running restaurants — traditional cafés, corporate dining programs, government food service contracts, and automated micro markets. Five locations, every operational problem you can name, and a few you can't.</p>
+                    <p>I was one of Square's earliest AI beta testers. I helped shape their AI product from prototype to public launch, and my work has been featured across Square's newsroom and product publications. I also conducted an independent security assessment that produced a CVSS 7.8-rated vulnerability report — because I'd rather find the cracks before my clients do.</p>
+                    <p>Through Table & Ledger, I help food service operators stop guessing and start using AI to make real decisions. The biggest shift isn't the technology. It's the mindset.</p>
+                    <div class="bio-stats">
+                        <div class="stat">
+                            <span class="stat-number">11</span>
+                            <span class="stat-label">Years Operating</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">5</span>
+                            <span class="stat-label">Locations Managed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">3+</span>
+                            <span class="stat-label">Square Publications</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">7.8</span>
+                            <span class="stat-label">CVSS Vuln. Rating</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="rule">
+
+        <!-- PUBLISHED WORK / CREDENTIALS -->
+        <section id="work" class="reveal">
+            <span class="section-label">Published Work & Credentials</span>
+            <h2>Featured in Square's official publications</h2>
+            <div class="credentials">
+                <div class="credential">
+                    <div class="credential-source">Square — The Bottom Line</div>
+                    <h3>Named Author Page</h3>
+                    <p>Published contributor on Square's business insights blog with a dedicated author profile.</p>
+                    <a href="https://squareup.com/us/en/the-bottom-line/about/donnie-mcclanahan" target="_blank" rel="noopener">View on Square →</a>
+                </div>
+                <div class="credential">
+                    <div class="credential-source">Square — Newsroom</div>
+                    <h3>Building the Future with Square AI</h3>
+                    <p>Featured case study on using AI for menu optimization, labor analysis, and data-driven operational decisions.</p>
+                    <a href="https://squareup.com/us/en/the-bottom-line/inside-square/building-square-ai" target="_blank" rel="noopener">Read Article →</a>
+                </div>
+                <div class="credential">
+                    <div class="credential-source">Square — Press</div>
+                    <h3>Square AI Beta Insights</h3>
+                    <p>Operational case studies from the beta program — the AI query that saved a lunch shift and uncovered hidden margin opportunities.</p>
+                    <a href="https://squareup.com/us/en/press/square-ai-beta-insights" target="_blank" rel="noopener">Read Article →</a>
+                </div>
+                <div class="credential">
+                    <div class="credential-source">Square — The Bottom Line</div>
+                    <h3>Top 5 Myths About AI and Small Business</h3>
+                    <p>Quoted as a practitioner debunking common misconceptions about AI adoption for small business operators.</p>
+                    <a href="https://squareup.com/us/en/the-bottom-line/operating-your-business/myths-about-ai-small-businesses" target="_blank" rel="noopener">Read Article →</a>
+                </div>
+            </div>
+        </section>
+
+        <hr class="rule">
+
+        <!-- PULLQUOTE -->
+        <div class="pullquote reveal">
+            <blockquote>"AI doesn't replace your judgment — it gives your judgment better information to work with."</blockquote>
+            <cite>Donnie McClanahan</cite>
+        </div>
+
+        <hr class="rule">
+
+        <!-- WHAT I DO -->
+        <section id="services" class="reveal">
+            <span class="section-label">What I Do</span>
+            <h2>Where operations meets intelligence</h2>
+            <p>I work at the intersection of restaurant operations and AI implementation — translating what the technology can actually do into language and systems that make sense for the people running the business.</p>
+            <div class="services">
+                <div class="service">
+                    <div class="service-name">AI Implementation</div>
+                    <p>Practical deployment of AI tools in food service operations. Menu optimization, labor analysis, cost management, and data-driven decision making using platforms operators already have.</p>
+                </div>
+                <div class="service">
+                    <div class="service-name">Product Feedback</div>
+                    <p>Capability elicitation and product architecture analysis for restaurant technology platforms. I find the edge cases, the architectural gaps, and the disconnect between how engineers build and how operators work.</p>
+                </div>
+                <div class="service">
+                    <div class="service-name">Security Research</div>
+                    <p>Independent security assessments of AI assistants and business tools. Red team methodology combining social engineering with systematic capability testing.</p>
+                </div>
+                <div class="service">
+                    <div class="service-name">Operations Strategy</div>
+                    <p>Multi-location food service consulting. Systems-first approach to staffing, cost control, menu engineering, and workflow optimization — built on a decade of doing it, not theorizing about it.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="rule rule--heavy">
+
+        <!-- CONTACT -->
+        <section id="contact" class="reveal">
+            <span class="section-label">Get In Touch</span>
+            <h2>Let's talk about what AI can actually do for your operation.</h2>
+            <div class="contact-grid">
+                <div class="contact-method">
+                    <div class="contact-type">Email</div>
+                    <a href="mailto:donnie@tableandledger.com">donnie@tableandledger.com</a>
+                </div>
+                <div class="contact-method">
+                    <div class="contact-type">LinkedIn</div>
+                    <a href="https://www.linkedin.com/in/donniemcclanahan" target="_blank" rel="noopener">donniemcclanahan</a>
+                </div>
+                <div class="contact-method">
+                    <div class="contact-type">Location</div>
+                    <a href="#">Waynesboro, Virginia</a>
+                </div>
+                <div class="contact-method">
+                    <div class="contact-type">Availability</div>
+                    <a href="#">Remote & Travel</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>© 2026 Table & Ledger. All rights reserved.</p>
+            <p>Donnie McClanahan — Waynesboro, VA</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // Scroll-triggered reveal animations
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        reveals.forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
