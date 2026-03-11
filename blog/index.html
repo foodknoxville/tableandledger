@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Restaurant Line Was Distributed Computing Before Anyone Called It That — Table & Ledger</title>
-    <meta name="description" content="Every station is a node. Every ticket is a message. Every expeditor is a load balancer. The restaurant already runs on distributed systems principles. The AI tools being built for it mostly don't know that.">
+    <title>Field Notes — Table & Ledger</title>
+    <meta name="description" content="Observations from the intersection of restaurant operations and AI implementation. By Donnie McClanahan.">
     <meta name="author" content="Donnie McClanahan">
 
-    <meta property="og:title" content="The Restaurant Line Was Distributed Computing Before Anyone Called It That">
-    <meta property="og:description" content="Every station is a node. Every ticket is a message. Every expeditor is a load balancer.">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://tableandledger.com/blog/distributed-computing-restaurant/">
+    <meta property="og:title" content="Field Notes — Table & Ledger">
+    <meta property="og:description" content="Observations from the intersection of restaurant operations and AI implementation.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tableandledger.com/blog">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,6 +29,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         html { font-size: 18px; scroll-behavior: smooth; }
 
         body {
@@ -86,6 +87,7 @@
             gap: 2rem;
             padding: 1.25rem 0;
             border-bottom: 1px solid var(--rule);
+            margin-bottom: 0;
         }
 
         nav a {
@@ -100,16 +102,9 @@
 
         nav a:hover { color: var(--rust); }
 
-        .article-header {
+        .page-header {
             padding: 3rem 0 2rem;
             border-bottom: 1px solid var(--rule);
-        }
-
-        .article-meta {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.25rem;
         }
 
         .section-label {
@@ -118,115 +113,102 @@
             letter-spacing: 0.12em;
             text-transform: uppercase;
             color: var(--rust);
+            display: block;
+            margin-bottom: 0.75rem;
         }
 
-        .article-date {
+        .page-header h1 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 2.4rem;
+            line-height: 1.2;
+            font-weight: 400;
+            margin-bottom: 0.75rem;
+        }
+
+        .page-header p {
+            color: var(--slate);
+            font-size: 1rem;
+            max-width: 560px;
+        }
+
+        .post-list { padding: 2rem 0; }
+
+        .post-item {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--rule);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            align-items: start;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .post-item.visible { opacity: 1; transform: translateY(0); }
+
+        .post-item:last-child { border-bottom: none; }
+
+        .post-meta {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.65rem;
             letter-spacing: 0.08em;
+            text-transform: uppercase;
             color: var(--warm-gray);
+            margin-bottom: 0.5rem;
         }
 
-        .article-header h1 {
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: 2.6rem;
-            line-height: 1.15;
-            font-weight: 400;
-            margin-bottom: 1rem;
-        }
-
-        .article-lede {
-            font-size: 1.15rem;
-            color: var(--slate);
-            line-height: 1.6;
-            font-style: italic;
-            border-left: 3px solid var(--rust);
-            padding-left: 1.25rem;
-            margin-top: 1.5rem;
-        }
-
-        .article-body {
-            padding: 2.5rem 0;
-            max-width: 680px;
-        }
-
-        .article-body p {
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-            line-height: 1.8;
-        }
-
-        .article-body h2 {
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin: 2.5rem 0 1rem;
-            color: var(--ink);
-        }
-
-        .article-body h3 {
+        .post-type {
+            display: inline-block;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
+            font-size: 0.6rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
             color: var(--rust);
-            margin: 2rem 0 0.75rem;
+            border: 1px solid var(--rust);
+            padding: 0.15rem 0.5rem;
+            margin-left: 0.75rem;
         }
 
-        .article-body strong { color: var(--ink); font-weight: 600; }
-
-        .pullquote {
-            border-top: 2px solid var(--ink);
-            border-bottom: 1px solid var(--rule);
-            padding: 1.5rem 0;
-            margin: 2.5rem 0;
+        .post-item h2 {
             font-family: 'DM Serif Display', Georgia, serif;
             font-size: 1.4rem;
-            line-height: 1.4;
+            font-weight: 400;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-item h2 a {
             color: var(--ink);
+            text-decoration: none;
+            transition: color 0.2s;
         }
 
-        .article-footer {
-            border-top: 2px solid var(--ink);
-            padding: 2rem 0;
-            margin-top: 1rem;
-        }
+        .post-item h2 a:hover { color: var(--rust); }
 
-        .author-block {
-            display: flex;
-            gap: 1.25rem;
-            align-items: flex-start;
-            margin-bottom: 2rem;
-        }
-
-        .author-info {
-            font-size: 0.9rem;
+        .post-excerpt {
             color: var(--slate);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
         }
 
-        .author-info strong {
-            display: block;
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: 1.1rem;
-            color: var(--ink);
-            margin-bottom: 0.25rem;
-        }
-
-        .back-link {
+        .read-more {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.7rem;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.06em;
             text-transform: uppercase;
             color: var(--rust);
             text-decoration: none;
+            transition: opacity 0.2s;
         }
 
-        .back-link:hover { opacity: 0.7; }
+        .read-more:hover { opacity: 0.7; }
 
         footer {
             border-top: 2px solid var(--ink);
             padding: 2rem 0;
-            margin-top: 1rem;
+            margin-top: 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -262,7 +244,7 @@
 
         @media (max-width: 700px) {
             html { font-size: 16px; }
-            .article-header h1 { font-size: 1.9rem; }
+            .post-item { grid-template-columns: 1fr; }
             .masthead { flex-direction: column; gap: 0.25rem; }
             nav { gap: 1.25rem; }
         }
@@ -280,69 +262,38 @@
 
         <nav>
             <a href="/">Home</a>
-            <a href="/blog/">Field Notes</a>
             <a href="/#about">About</a>
+            <a href="/#work">Published Work</a>
             <a href="/#services">What I Do</a>
             <a href="/#contact">Contact</a>
         </nav>
 
-        <div class="article-header">
-            <div class="article-meta">
-                <span class="section-label">Essay</span>
-                <span class="article-date">March 9, 2026</span>
-            </div>
-            <h1>The Restaurant Line Was Distributed Computing Before Anyone Called It That</h1>
-            <p class="article-lede">Every station is a node. Every ticket is a message. Every expeditor is a load balancer. The restaurant already runs on distributed systems principles. The AI tools being built for it mostly don't know that yet.</p>
+        <div class="page-header">
+            <span class="section-label">Writing</span>
+            <h1>Field Notes</h1>
+            <p>Observations from the intersection of restaurant operations and AI implementation. Practitioner-level. No hype.</p>
         </div>
 
-        <div class="article-body">
+        <div class="post-list">
 
-            <p>I have been running restaurants for thirty years. I have also spent the last several years watching the technology industry try to build AI tools for restaurants. The gap between those two experiences is where Table & Ledger lives.</p>
-
-            <p>Here is the thing nobody in a product meeting seems to know: a restaurant line during a dinner rush is a distributed computing system. It has been one since the first brigade kitchen. We just never had the vocabulary for it.</p>
-
-            <h2>The Architecture Nobody Named</h2>
-
-            <p>Walk into any functioning kitchen at volume and look past the noise. What you are actually watching is message passing between autonomous nodes operating under shared state constraints with a hard real-time requirement.</p>
-
-            <p>The grill station is a node. It has a local queue, a processing capacity, and a thermal state that affects throughput. The saute station is a node. The cold side is a node. Each one receives messages (tickets), processes them according to its own logic, and emits outputs that must coordinate with the other nodes to produce a coherent result at the pass.</p>
-
-            <p>The expeditor is not a manager in the conventional sense. The expeditor is a load balancer and a message broker. Their entire job is monitoring queue depth across nodes, identifying backpressure, and routing work to maintain even throughput. When the grill is buried and the saute station has capacity, a good expeditor adjusts ticket routing in real time. That is literally what a load balancer does.</p>
-
-            <div class="pullquote">"The 86 board is a distributed state update. When something sells out, every station, every server, every bartender needs that state change propagated immediately or the system produces errors."</div>
-
-            <p>The 86 board is shared mutable state. When an item runs out, that is a state change that has to propagate to every node in the system simultaneously or you get errors: servers selling things that don't exist, tickets coming in for items that can't be produced, guests waiting while the system figures out it's broken.</p>
-
-            <p>Every experienced operator has a muscle memory for managing these systems. We just describe it differently. We say things like "the line got backed up" (downstream backpressure), "we were in the weeds" (queue overflow), "the kitchen was firing on all cylinders" (optimal throughput with full node utilization). Same principles. Different vocabulary.</p>
-
-            <h2>Why This Matters for AI</h2>
-
-            <p>The technology industry largely builds restaurant AI as if restaurants are retail stores with a kitchen printer attached. That assumption is the core reason Toast has eaten Square's lunch in the full-service restaurant segment for years.</p>
-
-            <p>Retail inventory is quantity-based: you have 47 units of SKU 10234, you sell one, you have 46. Restaurant inventory doesn't work that way. The 86 board is binary. An item is available or it isn't, and that state can change in minutes based on prep yield, unexpected volume, or a line cook calling in sick. Building AI tools that reason about restaurant inventory using retail inventory paradigms is like trying to run a distributed system with the wrong consensus algorithm. It will work until it doesn't, and when it fails it will fail in ways that are hard to diagnose.</p>
-
-            <p>The labor problem is the same. Restaurant scheduling is not shift assignment against a coverage target. It is capacity planning across a system with variable throughput requirements, constrained by human factors (skill level, station certification, interpersonal dynamics), legal requirements (break schedules, minor labor laws), and real-time demand signals (reservations, historical sales curves, weather). The AI tools that treat it as a simple optimization problem miss most of the actual complexity.</p>
-
-            <h2>What an Actual Operator Brings</h2>
-
-            <p>I am not a software engineer. I have never written production code. What I have done is run this system under real conditions for thirty years, and I have spent the last several years systematically mapping restaurant operations concepts onto AI architecture to understand where the tools break and why.</p>
-
-            <p>When I walk a large language model through a restaurant scenario, I am not testing whether it knows what an 86 board is. I am watching how it reasons about state propagation, queue management, and constraint satisfaction under conditions it was not explicitly trained to handle. The model reveals its assumptions. Those assumptions are almost always retail assumptions applied to a restaurant context.</p>
-
-            <p>That gap, between what the tools assume and what the operation actually requires, is the entire job. Not hype. Not theory. Thirty years of operational reality applied to the question of where AI actually helps and where it confidently gets it wrong.</p>
-
-            <p>That is what this blog is about.</p>
-
-        </div>
-
-        <div class="article-footer">
-            <div class="author-block">
-                <div class="author-info">
-                    <strong>Donnie McClanahan</strong>
-                    Multi-location food service operator, Square AI Champion, founder of Table & Ledger. Based in Charlottesville, VA.
+            <div class="post-item">
+                <div>
+                    <div class="post-meta">March 9, 2026 <span class="post-type">Essay</span></div>
+                    <h2><a href="/blog/distributed-computing-restaurant/">The Restaurant Line Was Distributed Computing Before Anyone Called It That</a></h2>
+                    <p class="post-excerpt">Every station is a node. Every ticket is a message. Every expeditor is a load balancer. The restaurant already runs on distributed systems principles. The AI tools being built for it mostly don't know that.</p>
+                    <a href="/blog/distributed-computing-restaurant/" class="read-more">Read &rarr;</a>
                 </div>
             </div>
-            <a href="/blog/" class="back-link">&larr; All Field Notes</a>
+
+            <div class="post-item">
+                <div>
+                    <div class="post-meta">March 9, 2026 <span class="post-type">Musing</span></div>
+                    <h2><a href="/blog/the-last-thing-you-need-to-learn/">The Last Thing You Need to Learn Is How to Code</a></h2>
+                    <p class="post-excerpt">They let calculators into the ACT. Nobody mourned long division. The same thing is happening to basic programming right now, and the institutions haven't caught up yet.</p>
+                    <a href="/blog/the-last-thing-you-need-to-learn/" class="read-more">Read &rarr;</a>
+                </div>
+            </div>
+
         </div>
 
         <footer>
@@ -356,5 +307,17 @@
         </footer>
 
     </div>
+
+    <script>
+        const items = document.querySelectorAll('.post-item');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 100);
+                }
+            });
+        }, { threshold: 0.1 });
+        items.forEach(item => observer.observe(item));
+    </script>
 </body>
 </html>
