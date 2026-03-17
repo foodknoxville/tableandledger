@@ -239,6 +239,19 @@ nav a:hover { color: var(--rust); }
     color: var(--ink);
 }
 
+/* --- MUSING NOTE --- */
+.musing-note {
+    background: var(--highlight);
+    border-left: 3px solid var(--rust);
+    padding: 1rem 1.25rem;
+    margin-bottom: 2rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--slate);
+    line-height: 1.6;
+}
+
 /* --- STAT ROW --- */
 .stat-row {
     display: grid;
