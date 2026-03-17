@@ -3,7 +3,7 @@ title: The Restaurant Line Was Distributed Computing Before Anyone Called It Tha
 date: 2026-03-09
 category: Essay
 slug: distributed-computing-restaurant
-lede: Every station is a node. Every ticket is a message. Every expeditor is a load balancer. The restaurant already runs on distributed systems principles. The AI tools being built for it mostly don't know that.
+lede: Every station is a node. Every ticket is a message. Every expeditor is a load balancer. The restaurant already runs on distributed systems principles. The AI tools being built for it mostly don't know that yet.
 ---
 
 I have been running restaurants for thirty years. I have also spent the last several years watching the technology industry try to build AI tools for restaurants. The gap between those two experiences is where Table & Ledger lives.
@@ -18,26 +18,26 @@ The grill station is a node. It has a local queue, a processing capacity, and a 
 
 The expeditor is not a manager in the conventional sense. The expeditor is a load balancer and a message broker. Their entire job is monitoring queue depth across nodes, identifying backpressure, and routing work to maintain even throughput. When the grill is buried and the saute station has capacity, a good expeditor adjusts ticket routing in real time. That is literally what a load balancer does.
 
-The 86 board is a distributed state update. When something sells out, every station needs to know immediately. In distributed computing terms, that is a broadcast event that must propagate to all nodes with minimal latency. A kitchen that is slow to 86 is a kitchen with a consistency problem -- the same kind of problem that distributed databases solve with consensus protocols.
+<div class="pullquote">"The 86 board is a distributed state update. When something sells out, every station, every server, every bartender needs that state change propagated immediately or the system produces errors."</div>
+
+The 86 board is shared mutable state. When an item runs out, that is a state change that has to propagate to every node in the system simultaneously or you get errors: servers selling things that don't exist, tickets coming in for items that can't be produced, guests waiting while the system figures out it's broken.
+
+Every experienced operator has a muscle memory for managing these systems. We just describe it differently. We say things like "the line got backed up" (downstream backpressure), "we were in the weeds" (queue overflow), "the kitchen was firing on all cylinders" (optimal throughput with full node utilization). Same principles. Different vocabulary.
 
 ## Why This Matters for AI
 
-The technology companies building AI tools for restaurants are almost universally approaching the problem as if a restaurant is a retail operation with a kitchen printer attached. That assumption is embedded in the data models, the inventory paradigms, and the product architecture.
+The technology industry largely builds restaurant AI as if restaurants are retail stores with a kitchen printer attached. That assumption is the core reason Toast has eaten Square's lunch in the full-service restaurant segment for years.
 
-A retail operation has a catalog. Items come in, items go out, you count what is left. The state is the inventory count. That is a fundamentally different operational model from a kitchen, where the state is throughput capacity at a given moment, constrained by equipment, prep levels, staff skill, and the interaction effects between simultaneous orders.
+Retail inventory is quantity-based: you have 47 units of SKU 10234, you sell one, you have 46. Restaurant inventory doesn't work that way. The 86 board is binary. An item is available or it isn't, and that state can change in minutes based on prep yield, unexpected volume, or a line cook calling in sick. Building AI tools that reason about restaurant inventory using retail inventory paradigms is like trying to run a distributed system with the wrong consensus algorithm. It will work until it doesn't, and when it fails it will fail in ways that are hard to diagnose.
 
-When an AI tool tells a restaurant operator their "inventory is low on chicken breast," it is speaking retail. When an operator needs to know whether they can handle six more chicken entrees in the next fifteen minutes given current grill capacity and pending tickets, that is the actual operational question. No restaurant AI tool I have seen even attempts to answer it.
+The labor problem is the same. Restaurant scheduling is not shift assignment against a coverage target. It is capacity planning across a system with variable throughput requirements, constrained by human factors (skill level, station certification, interpersonal dynamics), legal requirements (break schedules, minor labor laws), and real-time demand signals (reservations, historical sales curves, weather). The AI tools that treat it as a simple optimization problem miss most of the actual complexity.
 
-## The Expeditor Problem
+## What an Actual Operator Brings
 
-The most interesting unsolved problem in restaurant AI is the expeditor problem. A good expeditor holds the entire state of the kitchen in their head -- every ticket's position in every station's queue, the relative speed of each cook, which tables are time-sensitive, which modifications are going to create bottlenecks. They make routing decisions every few seconds based on a mental model that updates in real time.
+I am not a software engineer. I have never written production code. What I have done is run this system under real conditions for thirty years, and I have spent the last several years systematically mapping restaurant operations concepts onto AI architecture to understand where the tools break and why.
 
-That is an incredibly sophisticated cognitive task. It is also exactly the kind of task that AI should be good at -- pattern recognition across multiple data streams with real-time optimization under constraints. But nobody is building it, because nobody building restaurant AI tools has ever stood at the pass during a Friday dinner rush and understood what the expeditor is actually doing.
+When I walk a large language model through a restaurant scenario, I am not testing whether it knows what an 86 board is. I am watching how it reasons about state propagation, queue management, and constraint satisfaction under conditions it was not explicitly trained to handle. The model reveals its assumptions. Those assumptions are almost always retail assumptions applied to a restaurant context.
 
-They think the expeditor is calling out orders. The expeditor is running a distributed system.
+That gap, between what the tools assume and what the operation actually requires, is the entire job. Not hype. Not theory. Thirty years of operational reality applied to the question of where AI actually helps and where it confidently gets it wrong.
 
-## What This Means
-
-If you are building technology for restaurants, the first thing you need to understand is that the operation you are modeling is not what you think it is. It is not a store. It is not a warehouse. It is a real-time distributed system with human nodes, and the operational vocabulary for it already exists in computer science. You just have to listen to the people who run the system every day and translate.
-
-If you are running a restaurant and someone tries to sell you an AI tool, ask them one question: does this tool understand my kitchen as a system, or does it just see a list of items for sale? The answer will tell you everything you need to know about whether they built it for you or for a demo.
+That is what this blog is about.

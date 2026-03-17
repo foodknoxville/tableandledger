@@ -12,7 +12,7 @@ lede: No inventory counts. No developer. No ongoing cost. A single-purpose AI sy
         <span class="stat-label">Days to build and deploy</span>
     </div>
     <div class="stat">
-        <span class="stat-number">5%</span>
+        <span class="stat-number">5.17%</span>
         <span class="stat-label">Food cost reduction in under 60 days</span>
     </div>
     <div class="stat">
@@ -23,17 +23,17 @@ lede: No inventory counts. No developer. No ongoing cost. A single-purpose AI sy
 
 ## The Problem
 
-The operation had no food cost tracking at all. Not bad tracking. None. Invoices came in, product got used, and at the end of the month the owner had a rough sense of whether food costs felt high or low based on how the bank account looked. That is how most independent diners actually operate.
+The diner had no food cost tracking at all. Not bad tracking. None. Invoices came in, product got used, and at the end of the month the owner had a rough sense of whether food costs felt high or low based on how the bank account looked. That is how most independent diners actually operate.
 
 The classic food cost formula requires a full inventory count at the beginning and end of every period: beginning inventory plus purchases minus ending inventory, divided by sales. Most operators know the formula. Most operators also know that a full inventory count in a working kitchen is a two-hour exercise that nobody wants to do consistently. So it doesn't get done, or it gets done badly, and the number is wrong anyway.
 
-The goal was not a perfect system. The goal was something better than nothing, that a manager could actually maintain without hating it, at a cost that made sense for a single-unit independent.
+The goal was not a perfect system. The goal was something better than nothing, that a manager who was also the owner could actually maintain without hating it, at a cost that made sense for a single-unit independent.
 
 <div class="pullquote">A 1% precision number versus no number at all is a 1000% improvement. Perfect is the enemy of visible.</div>
 
 ## The Formula
 
-The solution sidesteps inventory entirely by using a weighted rolling average of purchases against sales. Every week, invoice totals get logged. The calculation looks back six to eight weeks, weights the most recent week more heavily than older weeks, and produces a food cost percentage that accounts for recent purchasing trends without requiring a physical count.
+The solution sidesteps inventory entirely.  Sacrilege you say, but it does it by using a weighted rolling average of purchases against sales. Every week, invoice totals get logged. The calculation looks back six to eight weeks, weights the most recent week more heavily than older weeks, and produces a food cost percentage that accounts for recent purchasing trends without requiring a physical count.
 
 Monthly, this number reconciles within 1-2% of what the classic beginning-plus-purchases-minus-ending formula would produce. That gap is operationally irrelevant. What matters is that the number exists, it updates automatically, and it is directionally accurate enough to act on.
 
@@ -108,9 +108,9 @@ The system also pointed naturally toward key item inventory. Once you can see wh
 
 This is not a sophisticated AI deployment. It is a single-purpose automation that does one thing well: it removes the friction between an invoice arriving at the back door and that invoice becoming a number a manager can act on.
 
-The AI component is doing real work -- reading handwritten and printed invoices accurately, categorizing line items, identifying trends across weeks of data. But the system works because the workflow was designed around how managers actually behave, not how they theoretically should behave. They text. They check email. They do not log into dashboards.
+The AI component is doing real work: reading handwritten and printed invoices accurately, categorizing line items, identifying trends across weeks of data. But the system works because the workflow was designed around how managers actually behave, not how they theoretically should behave. They text. They check email. They do not log into dashboards.
 
-It was built in a day and a half. It costs nothing to run beyond the existing POS subscription. It is still running.
+It was built in a day and a half. It costs nothing to run beyond the existing POS subscription.  It shows what AI is when it actually does something, and it is still running.
 
 That is the standard every AI implementation in a restaurant should be held to: does it fit the actual workflow, does it produce a number someone can act on, and is the maintenance burden low enough that it survives contact with real operations?
 
