@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}} -- Table & Ledger</title>
+    <meta name="description" content="{{lede}}">
+    <meta name="author" content="Donnie McClanahan">
+
+    <meta property="og:title" content="{{title}}">
+    <meta property="og:description" content="{{lede}}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://tableandledger.com/blog/{{slug}}/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+
+        <header>
+            <div class="masthead">
+                <a href="/" class="brand">Table <span>&amp;</span> Ledger</a>
+                <span class="tagline">AI Consulting for Restaurant Operations</span>
+            </div>
+        </header>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Field Notes</a>
+            <a href="/#about">About</a>
+            <a href="/#services">What I Do</a>
+            <a href="/#contact">Contact</a>
+        </nav>
+
+        <div class="article-header">
+            <div class="article-meta">
+                <span class="section-label">{{category}}</span>
+                <span class="article-date">{{date_display}}</span>
+            </div>
+            <h1>{{title}}</h1>
+            <p class="article-lede">{{lede}}</p>
+        </div>
+
+        <div class="article-body">
+            {{content}}
+        </div>
+
+        <div class="article-footer">
+            <div class="author-info">
+                <strong>Donnie McClanahan</strong>
+                Multi-location food service operator, Square AI Champion, founder of Table & Ledger. Based in Charlottesville, VA.
+            </div>
+            <a href="/blog/" class="back-link">&larr; All Field Notes</a>
+        </div>
+
+        <footer>
+            <a href="/" class="footer-brand">Table <span>&amp;</span> Ledger</a>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/blog/">Field Notes</a>
+                <a href="mailto:donnie@tableandledger.com">Contact</a>
+                <a href="https://linkedin.com/in/donniemcclanahan" target="_blank">LinkedIn</a>
+            </div>
+        </footer>
+
+    </div>
+</body>
+</html>
