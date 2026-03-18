@@ -14,9 +14,7 @@ Here is the problem they solved. A self-driving car pulls up to an intersection.
 
 Real-world data cannot cover every scenario. You would have to drive every road on earth a million times and still miss edge cases. So NVIDIA did something else. They simulated it. Thousands of permutations of every scenario. Simulations generated inside physics-accurate digital environments, then used to train the AI. The same physics that make your character die from falling in an MMORPG.
 
-The robots trained on imagined experience outperform real-world-only trained robots by more than two to one.
-
-The machine that practiced in its mind beat the machine that only practiced in the real world.
+The robots trained on imagined experience outperform real-world-only trained robots.  You had robots performing tasks for the first time and doing it well.
 
 That is visualization. That is what every coach who ever said "see the shot before you take it" was teaching. That is what sports psychologists have been publishing research on for decades. Close your eyes, rehearse the scenario, perform better when it counts. NVIDIA built the computational version of visualization. They proved it works at a scale no human brain could match.
 
