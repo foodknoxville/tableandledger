@@ -112,7 +112,7 @@ Zuckerberg is not automating his assembly line. He is automating himself. He is 
 
 Meta's CFO, Susan Li, said something at a conference earlier this month that tells you everything about the internal pressure driving this. She said she thinks a lot about making sure Meta does not work any less efficiently than companies that were AI native from day one.
 
-An 80,000-person company is scared of 20-person startups. That fear is what produced a $2 billion acquisition, a personal CEO agent, and a reported plan to cut 16,000 people. All in a month.
+An 80,000-person company is scared of 20-person startups. Zuckerberg is using AI to eliminate layers inside a trillion-dollar company. You are still routing decisions through three people to figure out if you need to order bacon.  That fear is what produced a $2 billion acquisition, a personal CEO agent, and a reported plan to cut 16,000 people. All in a month.
 
 ## The Market Is Voting
 
