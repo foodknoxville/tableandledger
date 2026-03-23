@@ -54,7 +54,7 @@ Twenty-four days. That is the gap between Dorsey making the cut and Zuckerberg b
 
 ## The Playbook Is Identical
 
-This is not two CEOs arriving at the same conclusion independently. This is one CEO watching the other get rewarded for moving first and scrambling to catch up.
+This is not two CEOs arriving at the same conclusion independently. This is one CEO watching the other be first, and be validated.  Now he is scrambling to catch up.
 
 <div class="stack-block">
     <h3>Dorsey / Block</h3>
@@ -134,10 +134,10 @@ Whether AI is the reason or the excuse, the structural outcome is identical. Sma
 
 The tools being built to solve Zuckerberg's problem do not stay inside Meta. Block's Goose is open-source. Meta's Manus is a subscription product for small and medium businesses. The internal tool a Meta employee built on Claude, described as an "AI chief of staff," indexes documents, queries project data, and talks to other agents on behalf of its user. Those capabilities do not stay in Silicon Valley. They end up in the software the rest of us run our businesses on.
 
-When Square builds Manager Bot, when Toast ships AI reporting, when any POS platform adds an intelligence layer, they are building the same thing Zuckerberg just built for himself. Smaller. Simpler. But the same architecture: an agent that retrieves information you would normally have to go through layers of people to get.
+When Square builds Square AI, when Toast ships ToastIQ reporting, when any POS platform adds an intelligence layer, they are building the same thing Zuckerberg just built for himself. Smaller. Simpler. But the same architecture: an agent that retrieves information you would normally have to go through layers of people to get.
 
 For a restaurant, those layers are the shift lead checking the walk-in, the manager pulling a labor report, the bookkeeper reconciling invoices. The information already exists inside the systems. The friction is in getting it to the person who needs to act on it. That friction has a cost, and that cost just became visible to every CEO in the world because Dorsey measured it, cut it, and got rewarded for it.
 
-The question stopped being whether AI replaces jobs the moment Zuckerberg started building an AI clone of himself to do his own job faster. The question now is how quickly the tools built for trillion-dollar companies show up at your front counter.
+The question stopped being whether AI replaces jobs the moment Zuckerberg started building an AI clone of himself to do his own job faster. The question now is how quickly the tools built for trillion-dollar companies show up at your front counter.  And how the rumors of Mark being a robot grow.
 
 Based on the last 24 days, the answer is: faster than anyone predicted. Including Dorsey.
