@@ -47,9 +47,9 @@ The AI that wins in restaurants is the manager that never sleeps and never forge
 
 I am not theorizing about this. I am watching it happen in real time.
 
-As an alpha tester for a conversational AI product built into a major POS platform, I interact with a system that does not present dashboards. You ask it a question in plain language and it gives you an answer. What were my sales yesterday at this location. Which items sold the most last week. What is my labor percentage running right now.
+As someone who is fielding an agentic ai team daily, I interact with a system that does not present dashboards. You ask it a question in plain language and it gives you an answer. What were my sales yesterday at this location. Which items sold the most last week. What is my labor percentage running right now.
 
-That is already a step change from the dashboard model. But it is still transitional. You still have to know what to ask. The operator has to bring the question. The system waits.
+That is already a step change from the dashboard model. But it is still transitional. You still have to know what to ask. The GM has to bring the question. The system waits.
 
 The next step is a system that does not wait. A system that monitors the signals continuously and surfaces what matters at the moment it matters, through the channels the manager already uses. A text. An alert on the POS screen during a lull. A morning email with one number, one trend, one action item. The manager does not go looking for the data. The data finds the manager.
 
