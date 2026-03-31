@@ -277,6 +277,10 @@ nav a:hover { color: var(--rust); }
     margin-bottom: 0.4rem;
 }
 
+.stat-number.stat-hero {
+    font-size: 4.2rem;
+}
+
 .stat-label {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.62rem;
