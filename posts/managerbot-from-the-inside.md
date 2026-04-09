@@ -96,4 +96,4 @@ I have been building my own version of what I call the ambient manager alongside
 
 That is the future I am working on. And it is already starting.
 
-*"Hey Donnie, your sales at Tombras Cafe drop 21% every time it rains. And did you know that 72% of the time someone orders a cheeseburger, they order fries with it?"*
+*"Hey Donnie, your sales at Tombras Cafe are up 21% every time it rains. And did you know that 72% of the time someone orders a cheeseburger, they order fries with it?"*
