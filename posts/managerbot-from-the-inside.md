@@ -58,7 +58,7 @@ ManagerBot is not answering questions.
 
 It is running the playbook.
 
-I do not want to sound like a fanboy for Square or Block. I have never even talked personally to Jack Dorsey. (Jack, you should give me a call. No really, I have got a Cash App account you would love.) But the people in the Square Seller community and the engineers I have had the opportunity to work with tell me there is something different this time around with the technology. And from where I sit, they are right.
+I do not want to sound like a fanboy for Square or Block. I have never even talked personally to Jack Dorsey. (Jack, you should give me a call. No really, I have got a Cash App market that is untapped you would love.) But the people in the Square Seller community and the engineers I have had the opportunity to work with tell me there is something different this time around with the technology. And from where I sit, they are right.
 
 Part of the process with testing and pushing new technology is finding where it breaks. But with AI, the old cadence of alpha testing, beta testing, field testing, soft rollouts is compressing. If you can think of it, there are brilliant software engineers out there using AI to build the next iteration faster than you can finish describing the problem.
 
