@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Table & Ledger — AI Consulting for Restaurant Operations</title>
+    <title>Table & Ledger | AI Consulting for Restaurant Operations</title>
     <meta name="description" content="Donnie McClanahan bridges between restaurant operations and practical AI implementation. Not hype. Not theory. Operational results.">
     <meta name="author" content="Donnie McClanahan">
-    
+
     <!-- Open Graph -->
-    <meta property="og:title" content="Table & Ledger — AI Consulting for Restaurant Operations">
+    <meta property="og:title" content="Table & Ledger | AI Consulting for Restaurant Operations">
     <meta property="og:description" content="Practical AI implementation for food service operators. From someone who actually runs the restaurants.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://tableandledger.com">
@@ -354,6 +354,19 @@
             font-style: normal;
         }
 
+        .pullquote cite.pullquote-note {
+            display: block;
+            font-family: 'Source Sans 3', Georgia, serif;
+            font-size: 0.85rem;
+            text-transform: none;
+            letter-spacing: normal;
+            color: var(--warm-gray);
+            font-style: italic;
+            max-width: 520px;
+            margin: 0.5rem auto 0;
+            line-height: 1.5;
+        }
+
         /* --- CONTACT --- */
         .contact-grid {
             display: grid;
@@ -438,6 +451,84 @@
             transform: translateY(0);
         }
 
+        /* --- LATEST WRITING / POSTS --- */
+        .post-list {
+            margin-top: 2rem;
+        }
+
+        .post-card {
+            display: block;
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--rule);
+            text-decoration: none;
+            color: inherit;
+            transition: background 0.2s ease;
+        }
+
+        .post-card:hover {
+            background: var(--highlight);
+        }
+
+        .post-meta {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--warm-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .post-card h3 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 1.2rem;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+            color: var(--ink);
+            transition: color 0.2s ease;
+        }
+
+        .post-card:hover h3 {
+            color: var(--rust);
+        }
+
+        .post-card p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--slate);
+            margin-bottom: 0.6rem;
+            max-width: none;
+        }
+
+        .post-link {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--rust);
+        }
+
+        .more-link-wrap {
+            text-align: right;
+            margin-top: 1.25rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--rule);
+        }
+
+        .more-link {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--rust);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+
+        .more-link:hover {
+            border-bottom-color: var(--rust);
+        }
+
         /* --- RESPONSIVE --- */
         @media (max-width: 700px) {
             html { font-size: 16px; }
@@ -500,7 +591,7 @@
         <!-- HERO -->
         <section class="hero">
             <h1 class="fade-up">The restaurant line was <em>distributed computing</em> before anyone called it that.</h1>
-            <p class="hero-lede fade-up">I'm Donnie McClanahan — multi-location food service operator, Square AI Champion, and the person bridging the gap between restaurant operations and practical AI implementation. Not hype. Not theory. Operational results.</p>
+            <p class="hero-lede fade-up">I'm Donnie McClanahan. Multi-location food service operator, Square AI Champion, and the person bridging the gap between restaurant operations and practical AI implementation. Not hype. Not theory. Operational results.</p>
         </section>
 
         <hr class="rule rule--heavy">
@@ -544,25 +635,25 @@
             <h2>Featured in Square's official publications</h2>
             <div class="credentials">
                 <div class="credential">
-                    <div class="credential-source">Square — The Bottom Line</div>
+                    <div class="credential-source">Square | The Bottom Line</div>
                     <h3>Named Author Page</h3>
                     <p>Published contributor on Square's business insights blog with a dedicated author profile.</p>
                     <a href="https://squareup.com/us/en/the-bottom-line/about/donnie-mcclanahan" target="_blank" rel="noopener">View on Square →</a>
                 </div>
                 <div class="credential">
-                    <div class="credential-source">Square — Newsroom</div>
+                    <div class="credential-source">Square | Newsroom</div>
                     <h3>Building the Future with Square AI</h3>
                     <p>Featured case study on using AI for menu optimization, labor analysis, and data-driven operational decisions.</p>
                     <a href="https://squareup.com/us/en/the-bottom-line/inside-square/building-square-ai" target="_blank" rel="noopener">Read Article →</a>
                 </div>
                 <div class="credential">
-                    <div class="credential-source">Square — Press</div>
+                    <div class="credential-source">Square | Press</div>
                     <h3>Square AI Beta Insights</h3>
-                    <p>Operational case studies from the beta program — the AI query that saved a lunch shift and uncovered hidden margin opportunities.</p>
+                    <p>Operational case studies from the beta program. The AI query that saved a lunch shift and uncovered hidden margin opportunities.</p>
                     <a href="https://squareup.com/us/en/press/square-ai-beta-insights" target="_blank" rel="noopener">Read Article →</a>
                 </div>
                 <div class="credential">
-                    <div class="credential-source">Square — The Bottom Line</div>
+                    <div class="credential-source">Square | The Bottom Line</div>
                     <h3>Top 5 Myths About AI and Small Business</h3>
                     <p>Quoted as a practitioner debunking common misconceptions about AI adoption for small business operators.</p>
                     <a href="https://squareup.com/us/en/the-bottom-line/operating-your-business/myths-about-ai-small-businesses" target="_blank" rel="noopener">Read Article →</a>
@@ -574,9 +665,41 @@
 
         <!-- PULLQUOTE -->
         <div class="pullquote reveal">
-            <blockquote>"AI doesn't replace your judgment — it gives your judgment better information to work with."</blockquote>
-            <cite>Donnie McClanahan</cite>
+            <blockquote>"The software of the last twenty years made operators click their way to information. The next wave does not ask the operator to go looking. The AI becomes the interface, and operational knowledge decides what it looks like."</blockquote>
+            <cite class="pullquote-note">The landscape of AI is changing so fast this article is developing in real time.</cite>
         </div>
+
+        <hr class="rule">
+
+        <!-- LATEST WRITING -->
+        <section id="writing" class="reveal">
+            <span class="section-label">Latest Writing</span>
+            <h2>Field Notes from the operation</h2>
+            <p>Observations from the intersection of restaurant operations and AI implementation. Practitioner-level. No hype.</p>
+            <div class="post-list">
+                <a href="/blog/built-for-busy-toast-ai-strategy/" class="post-card">
+                    <div class="post-meta">April 20, 2026 / Field Note</div>
+                    <h3>What Does Built for Busy Tell Us About Toast's AI Strategy?</h3>
+                    <p>Toast just spent seven figures telling every operator in New York that they are built for busy. The campaign is a brand play. It is also a tell about the AI bet Toast is making for the next three years.</p>
+                    <span class="post-link">Read →</span>
+                </a>
+                <a href="/blog/managerbot-from-the-inside/" class="post-card">
+                    <div class="post-meta">April 8, 2026 / Field Note</div>
+                    <h3>What Is It Like Sitting on the Edge of the Evolution of AI?</h3>
+                    <p>Square just announced ManagerBot publicly this week. I have been using it for weeks. Here is what it actually feels like to manage restaurants with an AI agent riding shotgun.</p>
+                    <span class="post-link">Read →</span>
+                </a>
+                <a href="/blog/three-percent/" class="post-card">
+                    <div class="post-meta">March 31, 2026 / Field Note</div>
+                    <h3>Three Percent</h3>
+                    <p>A survey asked 600 restaurant operators where AI could deliver the most value. 38% said scheduling and labor. 3% said dashboards. Everyone keeps talking about the 38.</p>
+                    <span class="post-link">Read →</span>
+                </a>
+            </div>
+            <div class="more-link-wrap">
+                <a href="/blog/" class="more-link">More Field Notes →</a>
+            </div>
+        </section>
 
         <hr class="rule">
 
@@ -584,7 +707,7 @@
         <section id="services" class="reveal">
             <span class="section-label">What I Do</span>
             <h2>Where operations meets intelligence</h2>
-            <p>I work at the intersection of restaurant operations and AI implementation — translating what the technology can actually do into language and systems that make sense for the people running the business.</p>
+            <p>I work at the intersection of restaurant operations and AI implementation, translating what the technology can actually do into language and systems that make sense for the people running the business.</p>
             <div class="services">
                 <div class="service">
                     <div class="service-name">AI Implementation</div>
@@ -600,7 +723,7 @@
                 </div>
                 <div class="service">
                     <div class="service-name">Operations Strategy</div>
-                    <p>Multi-location food service consulting. Systems-first approach to staffing, cost control, menu engineering, and workflow optimization — built on a decade of doing it, not theorizing about it.</p>
+                    <p>Multi-location food service consulting. Systems-first approach to staffing, cost control, menu engineering, and workflow optimization. Built on a decade of doing it, not theorizing about it.</p>
                 </div>
             </div>
         </section>
@@ -634,7 +757,7 @@
         <!-- FOOTER -->
         <footer>
             <p>© 2026 Table & Ledger. All rights reserved.</p>
-            <p>Donnie McClanahan — Charlottesville, VA</p>
+            <p>Donnie McClanahan, Charlottesville, VA</p>
         </footer>
 
     </div>
