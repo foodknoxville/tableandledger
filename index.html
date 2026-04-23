@@ -529,6 +529,42 @@
             border-bottom-color: var(--rust);
         }
 
+        /* --- HOUSE PRINCIPLES --- */
+        .principles {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .principle {
+            display: grid;
+            grid-template-columns: 3.5rem 1fr;
+            gap: 1.75rem;
+            padding: 1.5rem 0;
+            align-items: baseline;
+        }
+
+        .principle:first-child { padding-top: 0.5rem; }
+        .principle:last-child { padding-bottom: 0; }
+
+        .principle-num {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 1.9rem;
+            line-height: 1;
+            color: var(--rust);
+            letter-spacing: 0.02em;
+        }
+
+        .principle-text {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 1.35rem;
+            line-height: 1.45;
+            color: var(--ink);
+            max-width: 620px;
+            font-weight: 400;
+            margin: 0;
+        }
+
         /* --- RESPONSIVE --- */
         @media (max-width: 700px) {
             html { font-size: 16px; }
@@ -565,6 +601,20 @@
             nav {
                 gap: 1.25rem;
             }
+
+            .principle {
+                grid-template-columns: 2.5rem 1fr;
+                gap: 1rem;
+                padding: 1.25rem 0;
+            }
+
+            .principle-num {
+                font-size: 1.5rem;
+            }
+
+            .principle-text {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
@@ -591,10 +641,35 @@
         <!-- HERO -->
         <section class="hero">
             <h1 class="fade-up">The restaurant line was <em>distributed computing</em> before anyone called it that.</h1>
-            <p class="hero-lede fade-up">I'm Donnie McClanahan. Multi-location food service operator, Square AI Champion, and the person bridging the gap between restaurant operations and practical AI implementation. Not hype. Not theory. Operational results.</p>
+            <p class="hero-lede fade-up">I'm Donnie McClanahan. Former Multilocation food service operator, Square AI Champion, and the person bridging the gap between restaurant operations and practical AI implementation. Not hype. Not theory. Operational results.</p>
         </section>
 
         <hr class="rule rule--heavy">
+
+        <!-- HOUSE PRINCIPLES -->
+        <section id="principles" class="reveal">
+            <span class="section-label">House Principles</span>
+            <ol class="principles">
+                <li class="principle">
+                    <span class="principle-num">I</span>
+                    <p class="principle-text">The operation is the source of truth. The software is the narrator.</p>
+                </li>
+                <li class="principle">
+                    <span class="principle-num">II</span>
+                    <p class="principle-text">If the AI cannot explain its answer in line cook English, it is not finished.</p>
+                </li>
+                <li class="principle">
+                    <span class="principle-num">III</span>
+                    <p class="principle-text">A dashboard nobody opens on Saturday at eight is not a dashboard.</p>
+                </li>
+                <li class="principle">
+                    <span class="principle-num">IV</span>
+                    <p class="principle-text">Operational knowledge is the signal. AI is the screen. Both matter.</p>
+                </li>
+            </ol>
+        </section>
+
+        <hr class="rule">
 
         <!-- ABOUT -->
         <section id="about" class="reveal">
