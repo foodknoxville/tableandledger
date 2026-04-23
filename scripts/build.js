@@ -189,6 +189,59 @@ function copyStatic() {
     }
 }
 
+// --- Recursive directory copy ---
+
+function copyDirRecursive(srcDir, destDir) {
+    ensureDir(destDir);
+    const entries = fs.readdirSync(srcDir, { withFileTypes: true });
+    for (const entry of entries) {
+        if (entry.name === '.gitkeep') continue;
+        const srcPath = path.join(srcDir, entry.name);
+        const destPath = path.join(destDir, entry.name);
+        if (entry.isDirectory()) {
+            copyDirRecursive(srcPath, destPath);
+        } else {
+            fs.copyFileSync(srcPath, destPath);
+        }
+    }
+}
+
+// --- Copy Cloudflare Pages Functions ---
+
+function copyFunctions() {
+    const srcFunctions = path.join(__dirname, '..', 'functions');
+    if (!fs.existsSync(srcFunctions)) return;
+    const destFunctions = path.join(DIST_DIR, 'functions');
+    copyDirRecursive(srcFunctions, destFunctions);
+    console.log('  Copied: /functions/ (Pages Functions)');
+}
+
+// --- Copy standalone HTML pages (ask/, etc.) ---
+
+function copyStandalonePages() {
+    // Any directory at the repo root containing an index.html that isn't
+    // one of the build system's own directories gets copied verbatim.
+    const rootDir = path.join(__dirname, '..');
+    const skip = new Set([
+        'node_modules', 'scripts', 'posts', 'templates', 'static',
+        'dist', 'functions', '.git', '.github'
+    ]);
+    const entries = fs.readdirSync(rootDir, { withFileTypes: true });
+    for (const entry of entries) {
+        if (!entry.isDirectory()) continue;
+        if (skip.has(entry.name)) continue;
+        if (entry.name.startsWith('.')) continue;
+
+        const srcDir = path.join(rootDir, entry.name);
+        const hasIndex = fs.existsSync(path.join(srcDir, 'index.html'));
+        if (!hasIndex) continue;
+
+        const destDir = path.join(DIST_DIR, entry.name);
+        copyDirRecursive(srcDir, destDir);
+        console.log(`  Copied: /${entry.name}/`);
+    }
+}
+
 // --- Copy root files (homepage, images, etc.) ---
 
 function copyRootFiles() {
@@ -230,6 +283,11 @@ function buildSitemap(posts) {
     </url>
     <url>
         <loc>https://tableandledger.com/blog/</loc>
+        <lastmod>${now}</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://tableandledger.com/ask/</loc>
         <lastmod>${now}</lastmod>
         <priority>0.8</priority>
     </url>`;
@@ -276,6 +334,12 @@ function build() {
     console.log('Static files:');
     copyStatic();
     copyRootFiles();
+
+    console.log('\nStandalone pages:');
+    copyStandalonePages();
+
+    console.log('\nFunctions:');
+    copyFunctions();
 
     console.log('\nPosts:');
     const posts = buildPosts();

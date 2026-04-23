@@ -154,6 +154,41 @@
             font-weight: 300;
         }
 
+        /* --- HERO CTAs --- */
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        .cta {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding: 1rem 1.75rem;
+            text-decoration: none;
+            border: 1px solid var(--ink);
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+            display: inline-block;
+        }
+        .cta--primary {
+            background: var(--ink);
+            color: var(--paper);
+        }
+        .cta--primary:hover {
+            background: var(--rust);
+            border-color: var(--rust);
+        }
+        .cta--secondary {
+            background: transparent;
+            color: var(--ink);
+        }
+        .cta--secondary:hover {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
         /* --- SECTION DIVIDERS --- */
         .rule {
             border: none;
@@ -635,6 +670,7 @@
             <a href="/blog/">Field Notes</a>
             <a href="#work">Published Work</a>
             <a href="#services">What I Do</a>
+            <a href="/ask/">Ask</a>
             <a href="#contact">Contact</a>
         </nav>
 
@@ -642,6 +678,9 @@
         <section class="hero">
             <h1 class="fade-up">The restaurant line was <em>distributed computing</em> before anyone called it that.</h1>
             <p class="hero-lede fade-up">I'm Donnie McClanahan. Former Multilocation food service operator, Square AI Champion, and the person bridging the gap between restaurant operations and practical AI implementation. Not hype. Not theory. Operational results.</p>
+            <div class="hero-ctas fade-up">
+                <a href="/ask/" class="cta cta--primary">Ask an Operator</a>
+            </div>
         </section>
 
         <hr class="rule rule--heavy">

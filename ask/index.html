@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask an Operator | Table & Ledger</title>
+    <meta name="description" content="Have a question about AI in your restaurant operation? Ask it. Real answer from a working operator.">
+    <meta name="author" content="Donnie McClanahan">
+
+    <meta property="og:title" content="Ask an Operator | Table & Ledger">
+    <meta property="og:description" content="Real answer from a working operator. Free, honest, no sales funnel.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tableandledger.com/ask/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ink: #1a1a18;
+            --paper: #f5f2ed;
+            --rust: #b5451b;
+            --rust-light: #d4693a;
+            --slate: #4a4a48;
+            --warm-gray: #8a8780;
+            --rule: #d4d0c8;
+            --highlight: #fef3e0;
+            --error: #8a2a1a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { font-size: 18px; scroll-behavior: smooth; }
+        body {
+            font-family: 'Source Sans 3', Georgia, serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .container { max-width: 820px; margin: 0 auto; padding: 0 2rem; }
+
+        /* --- HEADER --- */
+        header {
+            padding: 3rem 0 2rem;
+            border-bottom: 2px solid var(--ink);
+        }
+        .masthead {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .brand {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 2rem;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+            text-decoration: none;
+            line-height: 1.1;
+        }
+        .brand span { color: var(--rust); }
+        .tagline {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--warm-gray);
+        }
+
+        nav {
+            padding: 1.25rem 0;
+            display: flex;
+            gap: 2rem;
+            border-bottom: 1px solid var(--rule);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            flex-wrap: wrap;
+        }
+        nav a {
+            color: var(--slate);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        nav a:hover { color: var(--rust); }
+
+        /* --- PAGE HEADER --- */
+        .page-header { padding: 3.5rem 0 2rem; }
+        .page-header .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--rust);
+            display: block;
+            margin-bottom: 1.25rem;
+        }
+        .page-header h1 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 2.4rem;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.25rem;
+            max-width: 640px;
+            font-weight: 400;
+        }
+        .page-header .lede {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--slate);
+            max-width: 620px;
+            font-weight: 300;
+        }
+        .page-header .lede + .lede { margin-top: 0.75rem; }
+
+        .rule { border: none; border-top: 1px solid var(--rule); margin: 0; }
+        .rule--heavy { border-top: 2px solid var(--ink); }
+
+        /* --- FORM --- */
+        .form-wrap {
+            padding: 3rem 0 4rem;
+        }
+        form {
+            display: grid;
+            gap: 1.75rem;
+            max-width: 620px;
+        }
+        .field { display: grid; gap: 0.5rem; }
+        .field label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--ink);
+        }
+        .field .optional {
+            color: var(--warm-gray);
+            text-transform: none;
+            letter-spacing: 0.02em;
+            font-size: 0.7rem;
+            margin-left: 0.5rem;
+            font-style: italic;
+        }
+        .field input[type="text"],
+        .field input[type="email"],
+        .field select,
+        .field textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--ink);
+            padding: 0.6rem 0;
+            font-family: 'Source Sans 3', Georgia, serif;
+            font-size: 1rem;
+            color: var(--ink);
+            border-radius: 0;
+            transition: border-color 0.2s ease;
+        }
+        .field textarea {
+            resize: vertical;
+            min-height: 7rem;
+            line-height: 1.6;
+        }
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            outline: none;
+            border-bottom-color: var(--rust);
+        }
+        .field select {
+            -webkit-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231a1a18' stroke-width='1.5'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.25rem center;
+            padding-right: 2rem;
+        }
+
+        /* Honeypot (visually hidden but still focusable by naive bots) */
+        .honeypot {
+            position: absolute;
+            left: -10000px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        .submit-row {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+        button[type="submit"] {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--paper);
+            background: var(--ink);
+            border: none;
+            padding: 1rem 1.75rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        button[type="submit"]:hover { background: var(--rust); }
+        button[type="submit"]:disabled {
+            background: var(--warm-gray);
+            cursor: wait;
+        }
+        .submit-note {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--warm-gray);
+        }
+
+        /* --- STATE MESSAGES --- */
+        .form-message {
+            margin-top: 1.5rem;
+            padding: 1rem 1.25rem;
+            font-family: 'Source Sans 3', Georgia, serif;
+            font-size: 0.95rem;
+            border-left: 3px solid var(--warm-gray);
+            background: rgba(255,255,255,0.4);
+            display: none;
+        }
+        .form-message.is-error {
+            display: block;
+            border-left-color: var(--error);
+            color: var(--error);
+        }
+        .success-state {
+            display: none;
+            padding: 2rem 0;
+        }
+        .success-state h2 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 1.8rem;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+            font-weight: 400;
+            color: var(--ink);
+        }
+        .success-state h2 em { font-style: italic; color: var(--rust); }
+        .success-state p {
+            color: var(--slate);
+            max-width: 600px;
+            margin-bottom: 1rem;
+        }
+        .success-state .back-link {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--rust);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease;
+            display: inline-block;
+            margin-top: 0.75rem;
+        }
+        .success-state .back-link:hover { border-bottom-color: var(--rust); }
+
+        .is-submitted form { display: none; }
+        .is-submitted .success-state { display: block; }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid var(--rule);
+            padding: 2.5rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--warm-gray);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        footer a {
+            color: var(--warm-gray);
+            text-decoration: none;
+        }
+        footer a:hover { color: var(--rust); }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 700px) {
+            html { font-size: 16px; }
+            .page-header h1 { font-size: 1.9rem; }
+            .masthead { flex-direction: column; gap: 0.25rem; }
+            nav { gap: 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <header>
+            <div class="masthead">
+                <a href="/" class="brand">Table <span>&</span> Ledger</a>
+                <span class="tagline">AI Consulting for Restaurant Operations</span>
+            </div>
+        </header>
+
+        <nav>
+            <a href="/#about">About</a>
+            <a href="/blog/">Field Notes</a>
+            <a href="/#work">Published Work</a>
+            <a href="/#services">What I Do</a>
+            <a href="/ask/">Ask</a>
+        </nav>
+
+        <section class="page-header">
+            <span class="section-label">Ask an Operator</span>
+            <h1>Have a question about AI in your operation? Ask.</h1>
+            <p class="lede">No hourly meter. No sales funnel. If your question is clear, you will get a real answer from someone who has actually run the shift.</p>
+            <p class="lede">For paid engagements, use the consult booking instead. This form is for the question you want to ask before you are ready to hire anyone.</p>
+        </section>
+
+        <hr class="rule rule--heavy">
+
+        <section class="form-wrap" id="form-section">
+
+            <form id="ask-form" novalidate>
+                <!-- Honeypot: humans never see this. Bots fill it, we drop them. -->
+                <div class="honeypot" aria-hidden="true">
+                    <label for="company_website">Company website (leave blank)</label>
+                    <input type="text" id="company_website" name="company_website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <div class="field">
+                    <label for="name">Your name</label>
+                    <input type="text" id="name" name="name" required autocomplete="name">
+                </div>
+
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required autocomplete="email">
+                </div>
+
+                <div class="field">
+                    <label for="restaurant">Restaurant or company <span class="optional">optional</span></label>
+                    <input type="text" id="restaurant" name="restaurant" autocomplete="organization">
+                </div>
+
+                <div class="field">
+                    <label for="locations">Number of locations <span class="optional">optional</span></label>
+                    <select id="locations" name="locations">
+                        <option value="">Select</option>
+                        <option value="1">1</option>
+                        <option value="2-5">2 to 5</option>
+                        <option value="6-20">6 to 20</option>
+                        <option value="20+">20 or more</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="message">What are you trying to solve?</label>
+                    <textarea id="message" name="message" rows="6" required placeholder="The more specific the question, the better the answer."></textarea>
+                </div>
+
+                <div class="submit-row">
+                    <button type="submit" id="submit-btn">Send</button>
+                    <span class="submit-note">Reply within two business days</span>
+                </div>
+
+                <div class="form-message" id="form-message" role="alert" aria-live="polite"></div>
+            </form>
+
+            <div class="success-state" id="success-state">
+                <h2>Sent. I'll <em>reply soon</em>.</h2>
+                <p>Your message landed in my inbox. I read every one of these personally, and I will come back to you within two business days.</p>
+                <p>If you need a faster path for paid work, go straight to the consult booking on the homepage.</p>
+                <a href="/" class="back-link">Back to the homepage &rarr;</a>
+            </div>
+
+        </section>
+
+        <footer>
+            <span>&copy; 2026 Table &amp; Ledger</span>
+            <a href="/">tableandledger.com</a>
+        </footer>
+
+    </div>
+
+    <script>
+        (function() {
+            const form = document.getElementById('ask-form');
+            const btn = document.getElementById('submit-btn');
+            const msg = document.getElementById('form-message');
+            const section = document.getElementById('form-section');
+
+            function showError(text) {
+                msg.textContent = text;
+                msg.classList.add('is-error');
+            }
+            function clearError() {
+                msg.textContent = '';
+                msg.classList.remove('is-error');
+            }
+
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                clearError();
+
+                const name = form.name.value.trim();
+                const email = form.email.value.trim();
+                const message = form.message.value.trim();
+
+                if (!name || !email || !message) {
+                    showError('Name, email, and your message are all required.');
+                    return;
+                }
+
+                btn.disabled = true;
+                btn.textContent = 'Sending...';
+
+                try {
+                    const res = await fetch('/api/contact', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            name: form.name.value,
+                            email: form.email.value,
+                            restaurant: form.restaurant.value,
+                            locations: form.locations.value,
+                            message: form.message.value,
+                            company_website: form.company_website.value,
+                        }),
+                    });
+
+                    let data = {};
+                    try { data = await res.json(); } catch (_) {}
+
+                    if (!res.ok || data.error) {
+                        showError(data.error || 'Something went wrong. Try again in a moment, or email info@tableandledger.com directly.');
+                        btn.disabled = false;
+                        btn.textContent = 'Send';
+                        return;
+                    }
+
+                    // Success
+                    section.classList.add('is-submitted');
+                    window.scrollTo({ top: section.offsetTop - 20, behavior: 'smooth' });
+                } catch (err) {
+                    showError('Network hiccup. Try again, or email info@tableandledger.com directly.');
+                    btn.disabled = false;
+                    btn.textContent = 'Send';
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
