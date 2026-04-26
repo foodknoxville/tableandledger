@@ -239,6 +239,14 @@ nav a:hover { color: var(--rust); }
     color: var(--ink);
 }
 
+/* --- EMPHASIS (rust highlight on a load-bearing sentence) --- */
+.emphasis {
+    font-weight: 600;
+    color: var(--ink);
+    background-image: linear-gradient(to top, rgba(181, 69, 27, 0.18) 0%, rgba(181, 69, 27, 0.18) 28%, transparent 28%);
+    padding: 0 0.05em;
+}
+
 /* --- MUSING NOTE --- */
 .musing-note {
     background: var(--highlight);
