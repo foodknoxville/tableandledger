@@ -600,6 +600,117 @@
             margin: 0;
         }
 
+        /* --- BULLETIN CARD (one-time live announcement) --- */
+        .bulletin {
+            margin: 2.5rem 0 1rem;
+            padding: 1.75rem 2rem;
+            background: var(--highlight);
+            border: 1px solid var(--rust);
+            border-left: 4px solid var(--rust);
+        }
+
+        .bulletin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .bulletin-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--rust);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .bulletin-label::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--rust);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+        }
+
+        .bulletin-time {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            color: var(--slate);
+        }
+
+        .bulletin h2 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 1.5rem;
+            line-height: 1.25;
+            margin-bottom: 0.85rem;
+            letter-spacing: -0.01em;
+            color: var(--ink);
+        }
+
+        .bulletin p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--slate);
+            margin-bottom: 1.25rem;
+            max-width: none;
+        }
+
+        .bulletin p:last-of-type {
+            margin-bottom: 1.5rem;
+        }
+
+        .bulletin-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .bulletin-cta {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 0.65rem 1.1rem;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .bulletin-cta--primary {
+            background: var(--rust);
+            color: var(--paper);
+            border: 1px solid var(--rust);
+        }
+
+        .bulletin-cta--primary:hover {
+            background: var(--ink);
+            border-color: var(--ink);
+        }
+
+        .bulletin-cta--secondary {
+            color: var(--ink);
+            border: 1px solid var(--ink);
+            background: transparent;
+        }
+
+        .bulletin-cta--secondary:hover {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
         /* --- RESPONSIVE --- */
         @media (max-width: 700px) {
             html { font-size: 16px; }
@@ -682,6 +793,21 @@
                 <a href="/ask/" class="cta cta--primary">Ask an Operator</a>
                 <a href="https://app.squareup.com/appointments/book/f5s2qjfyx59pv9/LG2XSWE2S85VT/start" class="cta cta--secondary" target="_blank" rel="noopener">Book a Consult</a>
             </div>
+
+            <!-- BULLETIN: one-time HNGRY livestream announcement (edit/remove after May 4) -->
+            <aside class="bulletin fade-up" aria-label="Upcoming livestream">
+                <div class="bulletin-header">
+                    <span class="bulletin-label">Live Tomorrow</span>
+                    <span class="bulletin-time">Mon, May 4 &middot; 9am PT / 12pm ET</span>
+                </div>
+                <h2>Joining HNGRY live: systems of intelligence in restaurants</h2>
+                <p>Tomorrow morning I'm on a live HNGRY panel with Eli Feldman and Matt Newberg. My contribution will be the perspective of operators who don't have a venture-backed runway or a CTO on staff &mdash; the mom-and-pops, single-unit independents, and 5&ndash;7 unit operations. The folks running the operations most of this technology will eventually have to serve.</p>
+                <p>I'll also be talking about the framework I've been building for my consulting clients &mdash; the ambient manager. Distributed architecture, three layers, nine domains. More on that on stage tomorrow.</p>
+                <div class="bulletin-actions">
+                    <a class="bulletin-cta bulletin-cta--primary" href="https://form.typeform.com/to/cgAKMtLS" target="_blank" rel="noopener">Reserve your seat &rarr;</a>
+                    <a class="bulletin-cta bulletin-cta--secondary" href="/blog/ambient-manager-third-layer-restaurant-ai/">Background reading &rarr;</a>
+                </div>
+            </aside>
         </section>
 
         <hr class="rule rule--heavy">
@@ -792,6 +918,12 @@
             <h2>Field Notes from the operation</h2>
             <p>Observations from the intersection of restaurant operations and AI implementation. Operator-level. No hype.</p>
             <div class="post-list">
+                <a href="/blog/ambient-manager-third-layer-restaurant-ai/" class="post-card">
+                    <div class="post-meta">May 3, 2026 / Field Note</div>
+                    <h3>Beyond Systems of Intelligence: The Ambient Manager and the Third Layer of Restaurant AI</h3>
+                    <p>AI in restaurants needs three layers, not two — a system that watches, a system that remembers, and a system that acts. The platforms that bet on open are betting on the operators who matter most over the next decade.</p>
+                    <span class="post-link">Read →</span>
+                </a>
                 <a href="/blog/built-for-busy-toast-ai-strategy/" class="post-card">
                     <div class="post-meta">April 20, 2026 / Field Note</div>
                     <h3>What Does Built for Busy Tell Us About Toast's AI Strategy?</h3>
@@ -802,12 +934,6 @@
                     <div class="post-meta">April 8, 2026 / Field Note</div>
                     <h3>What Is It Like Sitting on the Edge of the Evolution of AI?</h3>
                     <p>Square just announced ManagerBot publicly this week. I have been using it for weeks. Here is what it actually feels like to manage restaurants with an AI agent riding shotgun.</p>
-                    <span class="post-link">Read →</span>
-                </a>
-                <a href="/blog/three-percent/" class="post-card">
-                    <div class="post-meta">March 31, 2026 / Field Note</div>
-                    <h3>Three Percent</h3>
-                    <p>A survey asked 600 restaurant operators where AI could deliver the most value. 38% said scheduling and labor. 3% said dashboards. Everyone keeps talking about the 38.</p>
                     <span class="post-link">Read →</span>
                 </a>
             </div>
