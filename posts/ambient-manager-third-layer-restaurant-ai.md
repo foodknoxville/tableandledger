@@ -6,6 +6,8 @@ slug: ambient-manager-third-layer-restaurant-ai
 lede: AI in restaurants needs three layers, not two — a system that watches, a system that remembers, and a system that acts. The platforms that bet on open are betting on the operators who matter most over the next decade.
 ---
 
+![A retro-futurist domed kitchen with copper cooking surfaces, a chef plating a dish, and curved booths in teal and rust](/ambient-kitchen.png)
+
 Tomorrow I'm joining Eli Feldman and Matt Newberg on a live HNGRY panel about systems of intelligence in restaurants. The question everyone is circling right now is what AI is actually for in this industry. Eli's been writing some of the sharpest pieces on what AI can do. Matt has built one of the rare venues where these conversations happen with tech forward operators in the room rather than around it.
 
 The conversation arrives at a strange moment for restaurant technology. AI is everywhere. Every platform has a feature with AI in the name. Every press release uses the word "Agentic." And underneath all of that, operators are quietly making one of the biggest architectural decisions of their careers, often without realizing it.

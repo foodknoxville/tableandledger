@@ -227,6 +227,24 @@ nav a:hover { color: var(--rust); }
     margin: 2.5rem 0;
 }
 
+.article-body img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 2rem auto;
+    border: 1px solid var(--rule);
+}
+
+.article-body img + em,
+.article-body p > em:only-child {
+    display: block;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--warm-gray);
+    margin-top: -1rem;
+    margin-bottom: 2rem;
+}
+
 /* --- PULLQUOTE (for custom HTML in markdown) --- */
 .pullquote {
     border-top: 2px solid var(--ink);
