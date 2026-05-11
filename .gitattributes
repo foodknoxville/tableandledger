@@ -1,0 +1,10 @@
+# Normalize line endings at the policy layer.
+# Git stores LF in the repo; checkout honors core.autocrlf on the client.
+* text=auto
+
+# Pin text formats to LF on disk so Pages/Cloudflare and tooling see consistent bytes,
+# regardless of who edited the file or which client wrote it.
+*.html text eol=lf
+*.md   text eol=lf
+*.css  text eol=lf
+*.js   text eol=lf
