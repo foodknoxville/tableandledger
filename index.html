@@ -3,779 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Table & Ledger | AI Consulting for Restaurant Operations</title>
+    <title>Table &amp; Ledger | AI Consulting for Restaurant Operations</title>
     <meta name="description" content="Forward Deployed Operator putting AI to work inside restaurant operations. Not hype. Not theory. Operational results.">
     <meta name="author" content="Donnie McClanahan">
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Table & Ledger | AI Consulting for Restaurant Operations">
+    <meta property="og:title" content="Table &amp; Ledger | AI Consulting for Restaurant Operations">
     <meta property="og:description" content="Practical AI implementation for food service operators. From someone who actually runs the restaurants.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://tableandledger.com">
-    
-    <!-- Fonts -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500&family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+
     <style>
-        :root {
-            --ink: #1a1a18;
-            --paper: #f5f2ed;
-            --rust: #b5451b;
-            --rust-light: #d4693a;
-            --slate: #4a4a48;
-            --warm-gray: #8a8780;
-            --rule: #d4d0c8;
-            --highlight: #fef3e0;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            font-size: 18px;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Source Sans 3', Georgia, serif;
-            background: var(--paper);
-            color: var(--ink);
-            line-height: 1.7;
-            font-weight: 400;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* --- NOISE TEXTURE OVERLAY --- */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 1000;
-        }
-
-        /* --- LAYOUT --- */
-        .container {
-            max-width: 820px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* --- HEADER / MASTHEAD --- */
-        header {
-            padding: 3rem 0 2rem;
-            border-bottom: 2px solid var(--ink);
-        }
-
-        .masthead {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .brand {
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: 2rem;
-            letter-spacing: -0.02em;
-            color: var(--ink);
-            text-decoration: none;
-            line-height: 1.1;
-        }
-
-        .brand span {
-            color: var(--rust);
-        }
-
-        .tagline {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--warm-gray);
-        }
-
-        /* --- NAV --- */
-        nav {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--rule);
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--slate);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        nav a:hover {
-            color: var(--rust);
-        }
-
-        /* --- HERO --- */
-        .hero {
-            padding: 4rem 0 3rem;
-        }
-
-        .hero h1 {
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: 2.8rem;
-            line-height: 1.15;
-            letter-spacing: -0.02em;
-            margin-bottom: 1.5rem;
-            max-width: 680px;
-        }
-
-        .hero h1 em {
-            font-style: italic;
-            color: var(--rust);
-        }
-
-        .hero-lede {
-            font-size: 1.15rem;
-            line-height: 1.8;
-            color: var(--slate);
-            max-width: 600px;
-            font-weight: 300;
-        }
-
-        /* --- HERO CTAs --- */
-        .hero-ctas {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-        .cta {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            padding: 1rem 1.75rem;
-            text-decoration: none;
-            border: 1px solid var(--ink);
-            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-            display: inline-block;
-        }
-        .cta--primary {
-            background: var(--ink);
-            color: var(--paper);
-        }
-        .cta--primary:hover {
-            background: var(--rust);
-            border-color: var(--rust);
-        }
-        .cta--secondary {
-            background: transparent;
-            color: var(--ink);
-        }
-        .cta--secondary:hover {
-            background: var(--ink);
-            color: var(--paper);
-        }
-
-        /* --- SECTION DIVIDERS --- */
-        .rule {
-            border: none;
-            border-top: 1px solid var(--rule);
-            margin: 0;
-        }
-
-        .rule--heavy {
-            border-top: 2px solid var(--ink);
-        }
-
-        /* --- SECTION --- */
-        section {
-            padding: 3rem 0;
-        }
-
-        .section-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--rust);
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        section h2 {
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: 1.6rem;
-            line-height: 1.3;
-            margin-bottom: 1.25rem;
-            letter-spacing: -0.01em;
-        }
-
-        section p {
-            color: var(--slate);
-            margin-bottom: 1rem;
-            max-width: 640px;
-        }
-
-        section p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* --- CREDENTIALS GRID --- */
-        .credentials {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem 3rem;
-            margin-top: 2rem;
-        }
-
-        .credential {
-            padding: 1.25rem 0;
-            border-top: 1px solid var(--rule);
-        }
-
-        .credential-source {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--warm-gray);
-            margin-bottom: 0.5rem;
-        }
-
-        .credential h3 {
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: 1.05rem;
-            line-height: 1.4;
-            margin-bottom: 0.4rem;
-        }
-
-        .credential p {
-            font-size: 0.85rem;
-            line-height: 1.6;
-            color: var(--slate);
-        }
-
-        .credential a {
-            color: var(--rust);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.2s;
-        }
-
-        .credential a:hover {
-            border-bottom-color: var(--rust);
-        }
-
-        /* --- ABOUT / BIO --- */
-        .bio-grid {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: 2.5rem;
-            align-items: start;
-            margin-top: 1.5rem;
-        }
-
-        .bio-photo {
-            width: 200px;
-            height: 240px;
-            background: var(--rule);
-            border: 1px solid var(--rule);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem;
-            color: var(--warm-gray);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .bio-text p {
-            margin-bottom: 1rem;
-        }
-
-        .bio-stats {
-            display: flex;
-            gap: 2rem;
-            margin-top: 1.5rem;
-            padding-top: 1.25rem;
-            border-top: 1px solid var(--rule);
-            flex-wrap: wrap;
-        }
-
-        .stat {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .stat-number {
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: 1.8rem;
-            color: var(--ink);
-            line-height: 1.1;
-        }
-
-        .stat-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.55rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--warm-gray);
-            margin-top: 0.25rem;
-        }
-
-        /* --- WHAT I DO --- */
-        .services {
-            margin-top: 1.5rem;
-        }
-
-        .service {
-            padding: 1.5rem 0;
-            border-top: 1px solid var(--rule);
-            display: grid;
-            grid-template-columns: 180px 1fr;
-            gap: 2rem;
-        }
-
-        .service-name {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--ink);
-            padding-top: 0.15rem;
-        }
-
-        .service p {
-            font-size: 0.9rem;
-            color: var(--slate);
-        }
-
-        /* --- QUOTE / PULLQUOTE --- */
-        .pullquote {
-            padding: 3rem 0;
-            text-align: center;
-        }
-
-        .pullquote blockquote {
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: 1.5rem;
-            font-style: italic;
-            line-height: 1.5;
-            color: var(--ink);
-            max-width: 600px;
-            margin: 0 auto 1rem;
-        }
-
-        .pullquote cite {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--warm-gray);
-            font-style: normal;
-        }
-
-        .pullquote cite.pullquote-note {
-            display: block;
-            font-family: 'Source Sans 3', Georgia, serif;
-            font-size: 0.85rem;
-            text-transform: none;
-            letter-spacing: normal;
-            color: var(--warm-gray);
-            font-style: italic;
-            max-width: 520px;
-            margin: 0.5rem auto 0;
-            line-height: 1.5;
-        }
-
-        /* --- CONTACT --- */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 1.5rem;
-        }
-
-        .contact-method {
-            padding: 1.25rem 0;
-            border-top: 1px solid var(--rule);
-        }
-
-        .contact-method .contact-type {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--warm-gray);
-            margin-bottom: 0.4rem;
-        }
-
-        .contact-method a {
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: 1.1rem;
-            color: var(--ink);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: all 0.2s;
-        }
-
-        .contact-method a:hover {
-            color: var(--rust);
-            border-bottom-color: var(--rust);
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            padding: 2rem 0;
-            border-top: 2px solid var(--ink);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        footer p {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--warm-gray);
-        }
-
-        /* --- ANIMATIONS --- */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 0.6s ease forwards;
-        }
-
-        .fade-up:nth-child(2) { animation-delay: 0.1s; }
-        .fade-up:nth-child(3) { animation-delay: 0.2s; }
-        .fade-up:nth-child(4) { animation-delay: 0.3s; }
-
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(16px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- LATEST WRITING / POSTS --- */
-        .post-list {
-            margin-top: 2rem;
-        }
-
-        .post-card {
-            display: block;
-            padding: 1.5rem 0;
-            border-top: 1px solid var(--rule);
-            text-decoration: none;
-            color: inherit;
-            transition: background 0.2s ease;
-        }
-
-        .post-card:hover {
-            background: var(--highlight);
-        }
-
-        .post-meta {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--warm-gray);
-            margin-bottom: 0.5rem;
-        }
-
-        .post-card h3 {
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: 1.2rem;
-            line-height: 1.3;
-            margin-bottom: 0.5rem;
-            color: var(--ink);
-            transition: color 0.2s ease;
-        }
-
-        .post-card:hover h3 {
-            color: var(--rust);
-        }
-
-        .post-card p {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            color: var(--slate);
-            margin-bottom: 0.6rem;
-            max-width: none;
-        }
-
-        .post-link {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--rust);
-        }
-
-        .more-link-wrap {
-            text-align: right;
-            margin-top: 1.25rem;
-            padding-top: 1.25rem;
-            border-top: 1px solid var(--rule);
-        }
-
-        .more-link {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--rust);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.2s ease;
-        }
-
-        .more-link:hover {
-            border-bottom-color: var(--rust);
-        }
-
-        /* --- HOUSE PRINCIPLES --- */
-        .principles {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .principle {
-            display: grid;
-            grid-template-columns: 3.5rem 1fr;
-            gap: 1.75rem;
-            padding: 1.5rem 0;
-            align-items: baseline;
-        }
-
-        .principle:first-child { padding-top: 0.5rem; }
-        .principle:last-child { padding-bottom: 0; }
-
-        .principle-num {
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: 1.9rem;
-            line-height: 1;
-            color: var(--rust);
-            letter-spacing: 0.02em;
-        }
-
-        .principle-text {
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: 1.35rem;
-            line-height: 1.45;
-            color: var(--ink);
-            max-width: 620px;
-            font-weight: 400;
-            margin: 0;
-        }
-
-        /* --- BULLETIN CARD (one-time live announcement) --- */
-        .bulletin {
-            margin: 2.5rem 0 1rem;
-            padding: 1.75rem 2rem;
-            background: var(--highlight);
-            border: 1px solid var(--rust);
-            border-left: 4px solid var(--rust);
-        }
-
-        .bulletin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-            gap: 0.5rem 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .bulletin-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--rust);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .bulletin-label::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--rust);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.85); }
-        }
-
-        .bulletin-label--recap::before {
-            display: none;
-        }
-
-        .bulletin-time {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            letter-spacing: 0.08em;
-            color: var(--slate);
-        }
-
-        .bulletin h2 {
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: 1.5rem;
-            line-height: 1.25;
-            margin-bottom: 0.85rem;
-            letter-spacing: -0.01em;
-            color: var(--ink);
-        }
-
-        .bulletin p {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: var(--slate);
-            margin-bottom: 1.25rem;
-            max-width: none;
-        }
-
-        .bulletin p:last-of-type {
-            margin-bottom: 1.5rem;
-        }
-
-        .bulletin-actions {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .bulletin-cta {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 0.65rem 1.1rem;
-            transition: all 0.2s;
-            display: inline-block;
-        }
-
-        .bulletin-cta--primary {
-            background: var(--rust);
-            color: var(--paper);
-            border: 1px solid var(--rust);
-        }
-
-        .bulletin-cta--primary:hover {
-            background: var(--ink);
-            border-color: var(--ink);
-        }
-
-        .bulletin-cta--secondary {
-            color: var(--ink);
-            border: 1px solid var(--ink);
-            background: transparent;
-        }
-
-        .bulletin-cta--secondary:hover {
-            background: var(--ink);
-            color: var(--paper);
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 700px) {
-            html { font-size: 16px; }
-
-            .hero h1 { font-size: 2rem; }
-
-            .credentials {
-                grid-template-columns: 1fr;
-            }
-
-            .bio-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .bio-photo {
-                width: 140px;
-                height: 170px;
-            }
-
-            .service {
-                grid-template-columns: 1fr;
-                gap: 0.5rem;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .masthead {
-                flex-direction: column;
-                gap: 0.25rem;
-            }
-
-            nav {
-                gap: 1.25rem;
-            }
-
-            .principle {
-                grid-template-columns: 2.5rem 1fr;
-                gap: 1rem;
-                padding: 1.25rem 0;
-            }
-
-            .principle-num {
-                font-size: 1.5rem;
-            }
-
-            .principle-text {
-                font-size: 1.1rem;
-            }
-        }
+    :root {
+        --study-deep: #121611;
+        --study: #1a1f1a;
+        --study-raised: #213624;
+        --ledger-green: #213624;
+        --ink-black: #1a1a1a;
+        --brass: #b08a3e;
+        --brass-bright: #cda45c;
+        --lamp: #dcba72;
+        --parchment: #f3ead6;
+        --heading: #f3ead6;
+        --ink: #e8e0cd;
+        --ink-dim: #b8ad93;
+        --ink-faint: #7d7458;
+        --oxblood: #7a2e2a;
+        --leather: #5a3a25;
+        --rule: #3a3d30;
+        --rule-faint: #2a2e23;
+        --highlight: rgba(176, 138, 62, 0.07);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 18px; scroll-behavior: smooth; }
+
+    body {
+        font-family: 'Newsreader', Georgia, serif;
+        background:
+            radial-gradient(ellipse 80% 55% at 72% 8%, rgba(176, 138, 62, 0.08), transparent 60%),
+            radial-gradient(ellipse 60% 40% at 15% 90%, rgba(122, 46, 42, 0.05), transparent 60%),
+            var(--study-deep);
+        background-attachment: fixed;
+        color: var(--ink);
+        line-height: 1.75;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+    }
+
+    body::before {
+        content: '';
+        position: fixed; inset: 0;
+        opacity: 0.05; mix-blend-mode: overlay; pointer-events: none; z-index: 1000;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .container { max-width: 880px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+
+    ::selection { background: var(--brass); color: var(--study-deep); }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--study-deep); }
+    ::-webkit-scrollbar-thumb { background: var(--leather); border-radius: 2px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--brass); }
+
+    /* --- HEADER --- */
+    header { padding: 2.75rem 0 1.5rem; border-bottom: 1px solid var(--brass); }
+    .masthead { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; }
+    .brand { font-family: 'Bodoni Moda', Didot, serif; font-size: 1.7rem; font-weight: 500; color: var(--heading); text-decoration: none; letter-spacing: 0.01em; }
+    .brand span { color: var(--brass); font-style: italic; }
+    .tagline { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--brass); letter-spacing: 0.16em; text-transform: uppercase; }
+
+    nav { display: flex; gap: 1.85rem; padding: 1.1rem 0; border-bottom: 1px solid var(--rule); flex-wrap: wrap; }
+    nav a { font-family: 'JetBrains Mono', monospace; font-size: 0.71rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-dim); text-decoration: none; transition: color 0.2s; }
+    nav a:hover { color: var(--brass-bright); }
+
+    /* --- SECTION SHELL --- */
+    section { padding: 3.25rem 0; }
+    .section-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--brass); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.85rem; }
+    .section-label::before { content: ''; width: 28px; height: 1px; background: var(--brass); display: inline-block; }
+    section h2 { font-family: 'Bodoni Moda', Didot, serif; font-size: 1.85rem; font-weight: 500; line-height: 1.18; color: var(--heading); margin-bottom: 1.1rem; letter-spacing: -0.01em; }
+    section p { color: var(--ink-dim); margin-bottom: 1rem; max-width: 660px; }
+    section p:last-child { margin-bottom: 0; }
+
+    .rule { border: none; border-top: 1px solid var(--rule); margin: 0; }
+    .rule--heavy { border-top: 1px solid var(--brass); }
+
+    /* --- HERO (full-bleed study) --- */
+    .hero { position: relative; min-height: 90vh; display: flex; flex-direction: column; overflow: hidden; border-bottom: 1px solid var(--brass); }
+    .hero-bg { position: absolute; inset: 0; background: url("study.jpg") center 42% / cover no-repeat; }
+    .hero-scrim { position: absolute; inset: 0; background:
+        linear-gradient(95deg, rgba(12,15,11,0.95) 0%, rgba(12,15,11,0.82) 32%, rgba(12,15,11,0.48) 60%, rgba(12,15,11,0.30) 100%),
+        linear-gradient(180deg, rgba(12,15,11,0.6) 0%, transparent 22%, transparent 52%, rgba(12,15,11,0.95) 100%); }
+    .hero-inner { position: relative; z-index: 2; flex: 1; width: 100%; max-width: 880px; margin: 0 auto; padding: 6rem 2rem 4.5rem; display: flex; flex-direction: column; justify-content: center; }
+    .hero-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--brass); margin-bottom: 1.6rem; display: flex; align-items: center; gap: 0.85rem; }
+    .hero-eyebrow::before { content: ''; width: 30px; height: 1px; background: var(--brass); }
+    .hero h1 { font-family: 'Bodoni Moda', Didot, serif; font-size: clamp(2.5rem, 5.6vw, 4.2rem); font-weight: 500; line-height: 1.02; letter-spacing: -0.015em; color: var(--heading); margin-bottom: 1.5rem; max-width: 15ch; text-wrap: balance; text-shadow: 0 2px 30px rgba(0,0,0,0.55); }
+    .hero h1 em { font-style: italic; }
+    .hero-divider { width: 220px; max-width: 62%; height: 1px; background: var(--brass); opacity: 0.75; margin: 0 0 1.5rem; position: relative; }
+    .hero-divider::after { content: ''; position: absolute; left: 50%; top: -2px; width: 5px; height: 5px; background: var(--brass-bright); border-radius: 50%; transform: translateX(-50%); }
+    .hero-lede { font-size: 1.16rem; line-height: 1.65; color: var(--ink); max-width: 540px; text-shadow: 0 1px 18px rgba(0,0,0,0.55); }
+    .hero-ctas { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 2.25rem; }
+    .cta { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.16em; padding: 0.95rem 1.7rem; text-decoration: none; border: 1px solid var(--brass); transition: all 0.2s; display: inline-block; }
+    .cta--primary { background: var(--brass); color: var(--study-deep); font-weight: 500; }
+    .cta--primary:hover { background: var(--brass-bright); border-color: var(--brass-bright); box-shadow: 0 0 28px rgba(176,138,62,0.3); }
+    .cta--secondary { background: rgba(12,15,11,0.35); color: var(--brass-bright); }
+    .cta--secondary:hover { background: rgba(176,138,62,0.12); color: var(--lamp); }
+
+    /* --- CAPABILITY TRIAD (over hero) --- */
+    .triad { display: flex; gap: 2.75rem; flex-wrap: wrap; margin-top: 3rem; }
+    .triad-item { display: flex; align-items: center; gap: 0.85rem; }
+    .triad-item > svg { width: 38px; height: 38px; color: var(--brass-bright); flex-shrink: 0; }
+    .triad-label { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brass); display: block; margin-bottom: 0.25rem; }
+    .triad-title { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.3rem; line-height: 1; color: var(--heading); display: block; }
+    .hero-tagline { position: relative; z-index: 2; padding: 1rem 2rem; text-align: center; border-top: 1px solid var(--rule-faint); background: rgba(12,15,11,0.5); font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--brass); }
+    .hero-tagline .sep { color: var(--ink-faint); margin: 0 0.55rem; }
+
+    /* --- BULLETIN (HNGRY recap) --- */
+    .bulletin { position: relative; margin: 3rem 0 0.5rem; padding: 1.9rem 2rem; background: rgba(0,0,0,0.18); border: 1px solid var(--rule); border-left: 2px solid var(--brass); }
+    .bulletin-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-bottom: 1rem; }
+    .bulletin-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--brass); display: flex; align-items: center; gap: 0.6rem; }
+    .bulletin-label::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--brass-bright); box-shadow: 0 0 10px rgba(220,186,114,0.7); }
+    .bulletin-time { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); }
+    .bulletin h2 { font-family: 'Bodoni Moda', Didot, serif; font-size: 1.5rem; font-weight: 500; line-height: 1.18; margin-bottom: 0.85rem; color: var(--heading); }
+    .bulletin h2 em { font-style: italic; color: var(--brass-bright); }
+    .bulletin p { font-size: 0.95rem; line-height: 1.7; color: var(--ink-dim); margin-bottom: 1.1rem; max-width: none; }
+    .bulletin-actions { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; }
+    .bulletin-cta { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
+    .bulletin-cta--primary { color: var(--brass-bright); }
+    .bulletin-cta--primary:hover { color: var(--lamp); }
+    .bulletin-cta--secondary { color: var(--ink-dim); }
+    .bulletin-cta--secondary:hover { color: var(--brass-bright); }
+
+    /* --- HOUSE PRINCIPLES --- */
+    .principles { list-style: none; margin: 0; padding: 0; }
+    .principle { display: grid; grid-template-columns: 3.5rem 1fr; gap: 1.75rem; padding: 1.4rem 0; align-items: baseline; border-bottom: 1px dashed var(--rule-faint); }
+    .principle:last-child { border-bottom: none; }
+    .principle-num { font-family: 'Bodoni Moda', Didot, serif; font-style: italic; font-size: 1.9rem; line-height: 1; color: var(--brass-bright); }
+    .principle-text { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; line-height: 1.4; color: var(--ink); max-width: 620px; margin: 0; }
+
+    /* --- ABOUT --- */
+    .bio-grid { display: grid; grid-template-columns: 230px 1fr; gap: 3rem; align-items: start; margin-top: 1.5rem; }
+    .bio-photo-wrap { position: relative; aspect-ratio: 3/4; border: 1px solid var(--rule); overflow: hidden; }
+    .bio-photo-wrap img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 28%; }
+    .bio-photo-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 62%, rgba(18,22,17,0.45) 100%); pointer-events: none; }
+    .brass-corner { position: absolute; width: 22px; height: 22px; border: 1px solid var(--brass); z-index: 2; }
+    .brass-corner.tl { top: -7px; left: -7px; border-right: none; border-bottom: none; }
+    .brass-corner.br { bottom: -7px; right: -7px; border-left: none; border-top: none; }
+    .bio-text p { margin-bottom: 1.1rem; color: var(--ink); font-size: 1.02rem; }
+    .bio-text a { color: var(--brass-bright); text-decoration: none; border-bottom: 1px solid rgba(205,164,92,0.4); }
+    .bio-text a:hover { color: var(--lamp); }
+    .bio-stats { display: flex; gap: 2.25rem; margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); flex-wrap: wrap; }
+    .stat { display: flex; flex-direction: column; max-width: 150px; }
+    .stat-number { font-family: 'Bodoni Moda', Didot, serif; font-size: 2.1rem; font-weight: 500; color: var(--brass-bright); line-height: 1; }
+    .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.56rem; text-transform: uppercase; letter-spacing: 0.13em; color: var(--ink-faint); margin-top: 0.45rem; line-height: 1.5; }
+
+    /* --- PUBLISHED WORK --- */
+    .credentials { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 1.75rem; }
+    .credential { background: var(--study); padding: 1.6rem 1.5rem; }
+    .credential-source { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--brass); margin-bottom: 0.6rem; }
+    .credential h3 { font-family: 'Bodoni Moda', Didot, serif; font-size: 1.08rem; font-weight: 500; line-height: 1.3; color: var(--heading); margin-bottom: 0.5rem; }
+    .credential p { font-size: 0.85rem; line-height: 1.6; color: var(--ink-dim); margin-bottom: 0.85rem; max-width: none; }
+    .credential a { font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass); text-decoration: none; }
+    .credential a:hover { color: var(--brass-bright); }
+    .repost-note a { color: var(--brass-bright); text-decoration: none; border-bottom: 1px solid rgba(205,164,92,0.4); }
+
+    /* --- PULLQUOTE --- */
+    .pullquote { padding: 3.5rem 0; text-align: center; }
+    .pullquote blockquote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.5rem, 3vw, 2rem); font-style: italic; line-height: 1.4; color: var(--ink); max-width: 720px; margin: 0 auto; }
+    .pullquote blockquote .hl { color: var(--brass-bright); }
+    .pullquote-rule { width: 100px; height: 1px; background: var(--brass); margin: 0 auto 2rem; opacity: 0.6; }
+
+    /* --- LATEST WRITING --- */
+    .post-list { margin-top: 1.75rem; border-top: 1px solid var(--rule); }
+    .post-card { display: block; padding: 1.75rem 0; border-bottom: 1px solid var(--rule-faint); text-decoration: none; color: inherit; transition: background 0.2s, padding-left 0.2s; }
+    .post-card:hover { background: rgba(176,138,62,0.03); padding-left: 0.5rem; }
+    .post-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-faint); margin-bottom: 0.55rem; }
+    .post-card h3 { font-family: 'Bodoni Moda', Didot, serif; font-size: 1.3rem; font-weight: 500; line-height: 1.22; margin-bottom: 0.5rem; color: var(--heading); transition: color 0.2s; }
+    .post-card:hover h3 { color: var(--brass-bright); }
+    .post-card p { font-size: 0.92rem; line-height: 1.65; color: var(--ink-dim); margin-bottom: 0.6rem; max-width: 680px; }
+    .post-link { font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--brass); }
+    .more-link-wrap { text-align: right; margin-top: 1.25rem; }
+    .more-link { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--brass); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+    .more-link:hover { border-bottom-color: var(--brass); }
+
+    /* --- WHAT I DO --- */
+    .services { margin-top: 1.5rem; border-top: 1px solid var(--rule); }
+    .service { padding: 1.6rem 0; border-bottom: 1px solid var(--rule-faint); display: grid; grid-template-columns: 190px 1fr; gap: 2rem; }
+    .service:last-child { border-bottom: none; }
+    .service-name { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--brass-bright); padding-top: 0.15rem; }
+    .service p { font-size: 0.92rem; color: var(--ink-dim); margin: 0; }
+
+    /* --- CONTACT --- */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 1.75rem; }
+    .contact-method { background: var(--study); padding: 1.4rem 1.5rem; }
+    .contact-type { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--ink-faint); margin-bottom: 0.45rem; }
+    .contact-method a { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.25rem; color: var(--brass-bright); text-decoration: none; transition: color 0.2s; }
+    .contact-method a:hover { color: var(--lamp); }
+    .contact-method span { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.25rem; color: var(--ink); }
+
+    /* --- FOOTER --- */
+    footer { padding: 2rem 0 3rem; border-top: 1px solid var(--brass); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
+    footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-faint); }
+
+    /* --- REVEAL --- */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 760px) {
+        html { font-size: 16px; }
+        .triad { grid-template-columns: 1fr; gap: 1.25rem; }
+        .bio-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+        .bio-photo-wrap { max-width: 240px; }
+        .credentials { grid-template-columns: 1fr; }
+        .contact-grid { grid-template-columns: 1fr; }
+        .service { grid-template-columns: 1fr; gap: 0.4rem; }
+        .masthead { flex-direction: column; gap: 0.3rem; }
+        nav { gap: 1.1rem; }
+        .principle { grid-template-columns: 2.5rem 1fr; gap: 1rem; }
+        .hero { min-height: 76vh; }
+        .hero-inner { padding: 4.5rem 1.5rem 3.5rem; }
+        .triad { gap: 1.5rem; }
+        .hero-tagline { letter-spacing: 0.16em; font-size: 0.56rem; }
+    }
     </style>
 </head>
 <body>
-
     <div class="container">
 
-        <!-- HEADER -->
         <header>
             <div class="masthead">
-                <a href="/" class="brand">Table <span>&</span> Ledger</a>
+                <a href="/" class="brand">Table <span>&amp;</span> Ledger</a>
                 <span class="tagline">AI Consulting for Restaurant Operations</span>
             </div>
         </header>
@@ -789,22 +251,75 @@
             <a href="#contact">Contact</a>
         </nav>
 
+        </div>
+
         <!-- HERO -->
         <section class="hero">
-            <h1 class="fade-up">The restaurant line was <em>distributed computing</em> before anyone called it that.</h1>
-            <p class="hero-lede fade-up">I'm Donnie McClanahan. Forward Deployed Operator, founder of Table &amp; Ledger. I ran restaurants for 30 years. Now I put AI to work inside other operators' restaurants. Square AI Champion. Not hype. Not theory. Operational results.</p>
-            <div class="hero-ctas fade-up">
-                <a href="https://app.squareup.com/appointments/book/f5s2qjfyx59pv9/LG2XSWE2S85VT/start" class="cta cta--primary" target="_blank" rel="noopener">Book a Consult</a>
-                <a href="/ask/" class="cta cta--secondary">Ask an Operator</a>
+            <div class="hero-bg"></div>
+            <div class="hero-scrim"></div>
+            <div class="hero-inner">
+                <div class="hero-eyebrow">Operator-grade intelligence</div>
+                <h1>The restaurant line was <em>distributed computing</em> before anyone called it that.</h1>
+                <div class="hero-divider"></div>
+                <p class="hero-lede">Forward Deployed Operator, founder of Table &amp; Ledger. Thirty years running restaurants; now I put AI to work inside other operators'. Square AI Champion. Not hype. Not theory. Operational results.</p>
+                <div class="hero-ctas">
+                    <a href="https://app.squareup.com/appointments/book/f5s2qjfyx59pv9/LG2XSWE2S85VT/start" class="cta cta--primary" target="_blank" rel="noopener">Book a Consult</a>
+                    <a href="/ask/" class="cta cta--secondary">Ask an Operator</a>
+                </div>
+                <div class="triad">
+                    <div class="triad-item">
+                        <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                            <circle cx="20" cy="20" r="6" stroke="currentColor" stroke-width="0.8"/>
+                            <circle cx="20" cy="20" r="11" stroke="currentColor" stroke-width="0.8" opacity="0.72"/>
+                            <circle cx="20" cy="20" r="16" stroke="currentColor" stroke-width="0.8" opacity="0.54"/>
+                            <circle cx="20" cy="20" r="1.6" fill="currentColor"/>
+                        </svg>
+                        <div><span class="triad-label">Seeing</span><span class="triad-title">Sensing reality</span></div>
+                    </div>
+                    <div class="triad-item">
+                        <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                            <rect x="8" y="8" width="24" height="24" stroke="currentColor" stroke-width="0.8"/>
+                            <line x1="16" y1="8" x2="16" y2="32" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
+                            <line x1="24" y1="8" x2="24" y2="32" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
+                            <line x1="8" y1="16" x2="32" y2="16" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
+                            <line x1="8" y1="24" x2="32" y2="24" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
+                            <circle cx="16" cy="16" r="1.5" fill="currentColor"/>
+                            <circle cx="24" cy="24" r="1.5" fill="currentColor"/>
+                            <circle cx="24" cy="16" r="1.5" fill="currentColor"/>
+                        </svg>
+                        <div><span class="triad-label">Understanding</span><span class="triad-title">Building context</span></div>
+                    </div>
+                    <div class="triad-item">
+                        <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                            <line x1="20" y1="20" x2="20" y2="7" stroke="currentColor" stroke-width="0.8"/>
+                            <line x1="20" y1="20" x2="32" y2="16" stroke="currentColor" stroke-width="0.8"/>
+                            <line x1="20" y1="20" x2="28" y2="31" stroke="currentColor" stroke-width="0.8"/>
+                            <line x1="20" y1="20" x2="12" y2="31" stroke="currentColor" stroke-width="0.8"/>
+                            <line x1="20" y1="20" x2="8" y2="16" stroke="currentColor" stroke-width="0.8"/>
+                            <circle cx="20" cy="7" r="2.6" fill="currentColor"/>
+                            <circle cx="32" cy="16" r="2" fill="none" stroke="currentColor" stroke-width="0.8"/>
+                            <circle cx="28" cy="31" r="2" fill="none" stroke="currentColor" stroke-width="0.8"/>
+                            <circle cx="12" cy="31" r="2" fill="none" stroke="currentColor" stroke-width="0.8"/>
+                            <circle cx="8" cy="16" r="2" fill="none" stroke="currentColor" stroke-width="0.8"/>
+                            <circle cx="20" cy="20" r="2.4" fill="currentColor"/>
+                        </svg>
+                        <div><span class="triad-label">Guiding</span><span class="triad-title">Guiding action</span></div>
+                    </div>
+                </div>
             </div>
+            <div class="hero-tagline">Intelligence that operates in the real world <span class="sep">&middot;</span> Context <span class="sep">&middot;</span> Rhythm <span class="sep">&middot;</span> Judgment</div>
+        </section>
 
-            <!-- BULLETIN: HNGRY livestream recap -->
-            <aside class="bulletin fade-up" aria-label="HNGRY livestream recap">
+        <div class="container">
+
+            <!-- BULLETIN -->
+            <section class="reveal" style="padding-top: 3.25rem;">
+            <aside class="bulletin" aria-label="HNGRY livestream recap">
                 <div class="bulletin-header">
-                    <span class="bulletin-label bulletin-label--recap">Recap</span>
+                    <span class="bulletin-label">Recap</span>
                     <span class="bulletin-time">Aired May 4, 2026</span>
                 </div>
-                <h2>HNGRY live recap: systems of intelligence in restaurants</h2>
+                <h2>HNGRY live recap: <em>systems of intelligence</em> in restaurants</h2>
                 <p>I joined Eli Feldman and Matt Newberg on HNGRY's live panel to talk about systems of intelligence in restaurants &mdash; specifically from the perspective of operators who don't have a venture-backed runway or a CTO on staff. Mom-and-pops, single-unit independents, 5&ndash;7 unit operations. The folks running the operations most of this technology will eventually have to serve.</p>
                 <p>I also walked through the framework I've been building for my consulting clients &mdash; the ambient manager. Distributed architecture, three layers, nine domains.</p>
                 <div class="bulletin-actions">
@@ -812,7 +327,7 @@
                     <a class="bulletin-cta bulletin-cta--secondary" href="/blog/ambient-manager-third-layer-restaurant-ai/">Background reading &rarr;</a>
                 </div>
             </aside>
-        </section>
+            </section>
 
         <hr class="rule rule--heavy">
 
@@ -820,22 +335,10 @@
         <section id="principles" class="reveal">
             <span class="section-label">House Principles</span>
             <ol class="principles">
-                <li class="principle">
-                    <span class="principle-num">I</span>
-                    <p class="principle-text">The operation is the source of truth. The software is the narrator.</p>
-                </li>
-                <li class="principle">
-                    <span class="principle-num">II</span>
-                    <p class="principle-text">If the AI cannot explain its answer in line cook English, it is not finished.</p>
-                </li>
-                <li class="principle">
-                    <span class="principle-num">III</span>
-                    <p class="principle-text">A dashboard nobody opens on Saturday at eight is not a dashboard.</p>
-                </li>
-                <li class="principle">
-                    <span class="principle-num">IV</span>
-                    <p class="principle-text">Operational knowledge is the signal. AI is the screen. Both matter.</p>
-                </li>
+                <li class="principle"><span class="principle-num">I</span><p class="principle-text">The operation is the source of truth. The software is the narrator.</p></li>
+                <li class="principle"><span class="principle-num">II</span><p class="principle-text">If the AI cannot explain its answer in line cook English, it is not finished.</p></li>
+                <li class="principle"><span class="principle-num">III</span><p class="principle-text">A dashboard nobody opens on Saturday at eight is not a dashboard.</p></li>
+                <li class="principle"><span class="principle-num">IV</span><p class="principle-text">Operational knowledge is the signal. AI is the screen. Both matter.</p></li>
             </ol>
         </section>
 
@@ -845,28 +348,20 @@
         <section id="about" class="reveal">
             <span class="section-label">About</span>
             <div class="bio-grid">
-                <img class="bio-photo" src="/donnie.jpg" alt="Donnie McClanahan" style="object-fit: cover;">
+                <div class="bio-photo-wrap">
+                    <span class="brass-corner tl"></span>
+                    <span class="brass-corner br"></span>
+                    <img src="donnie.jpg" alt="Donnie McClanahan, founder of Table &amp; Ledger">
+                </div>
                 <div class="bio-text">
                     <p>I ran restaurants for 30 years. Traditional cafes, QSR, corporate dining, government food service contracts, automated micro markets. Thirteen of those years I spent building and managing multi-location operations. Every operational problem you can name, and a few you cannot.</p>
-                    <p>I was one of Square's earliest AI beta testers. As a Square Champion, I helped shape their AI product from prototype to public launch, and my work has been featured across Square's newsroom and product publications. I also ran an independent security assessment that produced a CVSS 7.8 vulnerability report, because I would rather find the cracks before my clients do.</p>
-                    <p>Now I run Table & Ledger. I work with food service operators who want to stop guessing and start using AI to make real decisions. Not hype. Not theory. Actual implementation that changes how you run your business tomorrow morning.</p>
+                    <p>I was one of Square's earliest AI beta testers. As a Square Champion, I helped shape their AI product from prototype to public launch, and my work has been featured across Square's newsroom and product publications. I also ran an independent security assessment that produced a <a href="#work">CVSS 7.8 vulnerability report</a>, because I would rather find the cracks before my clients do.</p>
+                    <p>Now I run Table &amp; Ledger. I work with food service operators who want to stop guessing and start using AI to make real decisions. Not hype. Not theory. Actual implementation that changes how you run your business tomorrow morning.</p>
                     <div class="bio-stats">
-                        <div class="stat">
-                            <span class="stat-number">30</span>
-                            <span class="stat-label">Years in Food Service</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">13</span>
-                            <span class="stat-label">Years Multi-Location Development &amp; Management</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">7.8</span>
-                            <span class="stat-label">CVSS Vulnerability Rating</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">5</span>
-                            <span class="stat-label">Square Features</span>
-                        </div>
+                        <div class="stat"><span class="stat-number">30</span><span class="stat-label">Years in Food Service</span></div>
+                        <div class="stat"><span class="stat-number">13</span><span class="stat-label">Years Multi-Location Development &amp; Management</span></div>
+                        <div class="stat"><span class="stat-number">7.8</span><span class="stat-label">CVSS Vulnerability Rating</span></div>
+                        <div class="stat"><span class="stat-number">5</span><span class="stat-label">Square Features</span></div>
                     </div>
                 </div>
             </div>
@@ -874,49 +369,47 @@
 
         <hr class="rule">
 
-        <!-- PUBLISHED WORK / CREDENTIALS -->
+        <!-- PUBLISHED WORK -->
         <section id="work" class="reveal">
-            <span class="section-label">Published Work & Credentials</span>
+            <span class="section-label">Published Work &amp; Credentials</span>
             <h2>Featured in Square's official publications</h2>
             <div class="credentials">
                 <div class="credential">
                     <div class="credential-source">Square | Press</div>
-                    <h3>Anchor operator quote, Square ManagerBot open beta launch</h3>
-                    <p>Donnie is the anchor operator quote — the first quote in the body — in Square's official ManagerBot open beta announcement, April 28, 2026.</p>
-                    <a href="https://squareup.com/us/en/press/managerbot-open-beta" target="_blank" rel="noopener">Read Announcement →</a>
+                    <h3>Anchor operator quote, Square ManagerBot open beta</h3>
+                    <p>The anchor operator quote — the first quote in the body — in Square's official ManagerBot open beta announcement, April 28, 2026.</p>
+                    <a href="https://squareup.com/us/en/press/managerbot-open-beta" target="_blank" rel="noopener">Read Announcement &rarr;</a>
                 </div>
                 <div class="credential">
                     <div class="credential-source">Square | The Bottom Line</div>
                     <h3>Named Author Page</h3>
                     <p>Published contributor on Square's business insights blog with a dedicated author profile.</p>
-                    <a href="https://squareup.com/us/en/the-bottom-line/about/donnie-mcclanahan" target="_blank" rel="noopener">View on Square →</a>
+                    <a href="https://squareup.com/us/en/the-bottom-line/about/donnie-mcclanahan" target="_blank" rel="noopener">View on Square &rarr;</a>
                 </div>
                 <div class="credential">
                     <div class="credential-source">Square | Newsroom</div>
                     <h3>Building the Future with Square AI</h3>
                     <p>Featured case study on using AI for menu optimization, labor analysis, and data-driven operational decisions.</p>
-                    <a href="https://squareup.com/us/en/the-bottom-line/inside-square/building-square-ai" target="_blank" rel="noopener">Read Article →</a>
+                    <a href="https://squareup.com/us/en/the-bottom-line/inside-square/building-square-ai" target="_blank" rel="noopener">Read Article &rarr;</a>
                 </div>
                 <div class="credential">
                     <div class="credential-source">Square | Press</div>
                     <h3>Square AI Beta Insights</h3>
                     <p>Operational case studies from the beta program. The AI query that saved a lunch shift and uncovered hidden margin opportunities.</p>
-                    <a href="https://squareup.com/us/en/press/square-ai-beta-insights" target="_blank" rel="noopener">Read Article →</a>
+                    <a href="https://squareup.com/us/en/press/square-ai-beta-insights" target="_blank" rel="noopener">Read Article &rarr;</a>
                 </div>
                 <div class="credential">
                     <div class="credential-source">Square | The Bottom Line</div>
                     <h3>Top 5 Myths About AI and Small Business</h3>
                     <p>Quoted as a working operator debunking common misconceptions about AI adoption for small business owners.</p>
-                    <a href="https://squareup.com/us/en/the-bottom-line/operating-your-business/myths-about-ai-small-businesses" target="_blank" rel="noopener">Read Article →</a>
+                    <a href="https://squareup.com/us/en/the-bottom-line/operating-your-business/myths-about-ai-small-businesses" target="_blank" rel="noopener">Read Article &rarr;</a>
                 </div>
-            </div>
-
-            <h2 style="margin-top: 3rem;">Reposted by Jack Dorsey</h2>
-            <p>Two Table &amp; Ledger posts were reposted by Block co-founder Jack Dorsey. The food cost case study, <a href="/blog/food-cost-visibility-one-day/" style="color: var(--rust); text-decoration: none; border-bottom: 1px solid var(--rust);">From Nothing to Food Cost Visibility in One Day</a>, reached roughly 68,000 views. The ManagerBot field note was reposted as well, at roughly 58,000 views.</p>
-            <div style="display: flex; justify-content: center; margin-top: 1.5rem;">
-                <blockquote class="twitter-tweet" data-dnt="true" data-theme="light" data-width="500">
-                    <a href="https://x.com/tableandledger/status/2042668948500381749"></a>
-                </blockquote>
+                <div class="credential">
+                    <div class="credential-source">X | Reposted by Jack Dorsey</div>
+                    <h3>Two posts reposted by Jack Dorsey</h3>
+                    <p class="repost-note">The food cost case study, <a href="/blog/food-cost-visibility-one-day/">From Nothing to Food Cost Visibility in One Day</a>, reached ~68,000 views. The ManagerBot field note was reposted as well, at ~58,000 views.</p>
+                    <a href="https://x.com/tableandledger/status/2042668948500381749" target="_blank" rel="noopener">View on X &rarr;</a>
+                </div>
             </div>
         </section>
 
@@ -924,7 +417,8 @@
 
         <!-- PULLQUOTE -->
         <div class="pullquote reveal">
-            <blockquote>"The software of the last twenty years made operators click their way to information. The next wave does not ask the operator to go looking. The AI becomes the interface, and operational knowledge decides what it looks like."</blockquote>
+            <div class="pullquote-rule"></div>
+            <blockquote>The software of the last twenty years made operators click their way to information. The next wave does not ask the operator to go looking. <span class="hl">The AI becomes the interface, and operational knowledge decides what it looks like.</span></blockquote>
         </div>
 
         <hr class="rule">
@@ -939,23 +433,23 @@
                     <div class="post-meta">May 3, 2026 / Field Note</div>
                     <h3>Beyond Systems of Intelligence: The Ambient Manager and the Third Layer of Restaurant AI</h3>
                     <p>AI in restaurants needs three layers, not two — a system that watches, a system that remembers, and a system that acts. The platforms that bet on open are betting on the operators who matter most over the next decade.</p>
-                    <span class="post-link">Read →</span>
+                    <span class="post-link">Read &rarr;</span>
                 </a>
                 <a href="/blog/built-for-busy-toast-ai-strategy/" class="post-card">
                     <div class="post-meta">April 20, 2026 / Field Note</div>
                     <h3>What Does Built for Busy Tell Us About Toast's AI Strategy?</h3>
                     <p>Toast just spent seven figures telling every operator in New York that they are built for busy. The campaign is a brand play. It is also a tell about the AI bet Toast is making for the next three years.</p>
-                    <span class="post-link">Read →</span>
+                    <span class="post-link">Read &rarr;</span>
                 </a>
                 <a href="/blog/managerbot-from-the-inside/" class="post-card">
                     <div class="post-meta">April 8, 2026 / Field Note</div>
                     <h3>What Is It Like Sitting on the Edge of the Evolution of AI?</h3>
                     <p>Square just announced ManagerBot publicly this week. I have been using it for weeks. Here is what it actually feels like to manage restaurants with an AI agent riding shotgun.</p>
-                    <span class="post-link">Read →</span>
+                    <span class="post-link">Read &rarr;</span>
                 </a>
             </div>
             <div class="more-link-wrap">
-                <a href="/blog/" class="more-link">More Field Notes →</a>
+                <a href="/blog/" class="more-link">More Field Notes &rarr;</a>
             </div>
         </section>
 
@@ -967,22 +461,10 @@
             <h2>Where operations meets intelligence</h2>
             <p>I work at the intersection of restaurant operations and AI implementation, translating what the technology can actually do into language and systems that make sense for the people running the business.</p>
             <div class="services">
-                <div class="service">
-                    <div class="service-name">AI Implementation</div>
-                    <p>Practical deployment of AI tools in food service operations. Menu optimization, labor analysis, cost management, and data-driven decision making using platforms operators already have.</p>
-                </div>
-                <div class="service">
-                    <div class="service-name">Product Feedback</div>
-                    <p>Capability elicitation and product architecture analysis for restaurant technology platforms. I find the edge cases, the architectural gaps, and the disconnect between how engineers build and how operators work.</p>
-                </div>
-                <div class="service">
-                    <div class="service-name">Security Research</div>
-                    <p>Independent security assessments of AI assistants and business tools. Red team methodology combining social engineering with systematic capability testing.</p>
-                </div>
-                <div class="service">
-                    <div class="service-name">Operations Strategy</div>
-                    <p>Multi-location food service consulting. Systems-first approach to staffing, cost control, menu engineering, and workflow optimization. Built on 30 years of doing it, not theorizing about it.</p>
-                </div>
+                <div class="service"><div class="service-name">AI Implementation</div><p>Practical deployment of AI tools in food service operations. Menu optimization, labor analysis, cost management, and data-driven decision making using platforms operators already have.</p></div>
+                <div class="service"><div class="service-name">Product Feedback</div><p>Capability elicitation and product architecture analysis for restaurant technology platforms. I find the edge cases, the architectural gaps, and the disconnect between how engineers build and how operators work.</p></div>
+                <div class="service"><div class="service-name">Security Research</div><p>Independent security assessments of AI assistants and business tools. Red team methodology combining social engineering with systematic capability testing.</p></div>
+                <div class="service"><div class="service-name">Operations Strategy</div><p>Multi-location food service consulting. Systems-first approach to staffing, cost control, menu engineering, and workflow optimization. Built on 30 years of doing it, not theorizing about it.</p></div>
             </div>
         </section>
 
@@ -993,52 +475,27 @@
             <span class="section-label">Get In Touch</span>
             <h2>Let's talk about what AI can actually do for your operation.</h2>
             <div class="contact-grid">
-                <div class="contact-method">
-                    <div class="contact-type">Email</div>
-                    <a href="mailto:donnie@tableandledger.com">donnie@tableandledger.com</a>
-                </div>
-                <div class="contact-method">
-                    <div class="contact-type">LinkedIn</div>
-                    <a href="https://www.linkedin.com/in/donniemcclanahan" target="_blank" rel="noopener">donniemcclanahan</a>
-                </div>
-                <div class="contact-method">
-                    <div class="contact-type">Location</div>
-                    <a href="#">Waynesboro, Virginia</a>
-                </div>
-                <div class="contact-method">
-                    <div class="contact-type">Availability</div>
-                    <a href="#">Remote & Travel</a>
-                </div>
+                <div class="contact-method"><div class="contact-type">Email</div><a href="mailto:donnie@tableandledger.com">donnie@tableandledger.com</a></div>
+                <div class="contact-method"><div class="contact-type">LinkedIn</div><a href="https://www.linkedin.com/in/donniemcclanahan" target="_blank" rel="noopener">donniemcclanahan</a></div>
+                <div class="contact-method"><div class="contact-type">Location</div><span>Waynesboro, Virginia</span></div>
+                <div class="contact-method"><div class="contact-type">Availability</div><span>Remote &amp; Travel</span></div>
             </div>
         </section>
 
-        <!-- FOOTER -->
         <footer>
-            <p>© 2026 Table & Ledger. All rights reserved.</p>
+            <p>© 2026 Table &amp; Ledger. All rights reserved.</p>
             <p>Donnie McClanahan, Waynesboro, VA</p>
         </footer>
 
     </div>
 
     <script>
-        // Scroll-triggered reveal animations
         const reveals = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -40px 0px'
-        });
-
-        reveals.forEach(el => observer.observe(el));
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(el => io.observe(el));
     </script>
-
-    <!-- X / Twitter embed widget (Published Work: Dorsey reposts) -->
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 </body>
 </html>
