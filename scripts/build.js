@@ -319,6 +319,41 @@ Sitemap: https://tableandledger.com/sitemap.xml
     console.log('  Built: /robots.txt');
 }
 
+// --- Generate llms.txt (curated, LLM-friendly site map) ---
+
+function buildLlmsTxt(posts) {
+    let txt = `# Table & Ledger
+
+> Practical AI implementation for restaurant operators, from someone who ran restaurants for 30 years.
+
+Table & Ledger is the consulting practice of Donnie McClanahan, a Forward Deployed Operator who puts AI to work inside food service operations. The Field Notes below are operator-level essays on the intersection of restaurant operations and AI. Not hype. Not theory. Operational results.
+
+## Pages
+
+- [Home](https://tableandledger.com/): Who Donnie is, published work and Square credentials, and what Table & Ledger does.
+- [Field Notes](https://tableandledger.com/blog/): Index of all essays and field notes.
+- [Ask an Operator](https://tableandledger.com/ask/): Free-form question form — a real answer from a working operator, no sales funnel.
+
+## Field Notes
+`;
+
+    for (const post of posts) {
+        txt += `\n- [${post.title}](https://tableandledger.com/blog/${post.slug}/) (${post.category}, ${post.date_display}): ${post.lede}`;
+    }
+
+    txt += `
+
+## Contact
+
+- Email: donnie@tableandledger.com
+- Location: Waynesboro, Virginia (remote & travel)
+- Book a consult: https://app.squareup.com/appointments/book/f5s2qjfyx59pv9/LG2XSWE2S85VT/start
+`;
+
+    fs.writeFileSync(path.join(DIST_DIR, 'llms.txt'), txt);
+    console.log('  Built: /llms.txt');
+}
+
 // --- Main ---
 
 function build() {
@@ -350,6 +385,7 @@ function build() {
     console.log('\nSEO:');
     buildSitemap(posts);
     buildRobots();
+    buildLlmsTxt(posts);
 
     console.log(`\nDone. ${posts.length} posts built to dist/\n`);
 }
