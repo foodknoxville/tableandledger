@@ -107,6 +107,41 @@ function buildPosts() {
         // Convert markdown to HTML
         const htmlContent = marked.parse(content);
 
+        // Normalize date to string (gray-matter may return Date object)
+        const dateStr = data.date instanceof Date
+            ? data.date.toISOString().split('T')[0]
+            : String(data.date);
+
+        // BlogPosting structured data. author/publisher reference the canonical
+        // Person/Organization @ids defined on the homepage, so "Donnie McClanahan"
+        // resolves to one entity across the whole site. JSON.stringify handles
+        // escaping of quotes/specials in the title and lede.
+        const articleUrl = `https://tableandledger.com/blog/${data.slug}/`;
+        const articleJsonLd = JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
+            headline: data.title,
+            description: data.lede,
+            datePublished: dateStr,
+            dateModified: dateStr,
+            url: articleUrl,
+            mainEntityOfPage: articleUrl,
+            articleSection: data.category,
+            image: 'https://tableandledger.com/donnie.jpg',
+            author: {
+                '@type': 'Person',
+                '@id': 'https://tableandledger.com/#donnie',
+                name: 'Donnie McClanahan',
+                url: 'https://tableandledger.com/'
+            },
+            publisher: {
+                '@type': 'Organization',
+                '@id': 'https://tableandledger.com/#org',
+                name: 'Table & Ledger',
+                url: 'https://tableandledger.com/'
+            }
+        });
+
         // Render into article template
         const pageHtml = renderTemplate(articleTemplate, {
             title: data.title,
@@ -114,18 +149,14 @@ function buildPosts() {
             category: data.category,
             slug: data.slug,
             lede: data.lede,
-            content: htmlContent
+            content: htmlContent,
+            article_jsonld: articleJsonLd
         });
 
         // Write to dist/blog/{slug}/index.html
         const postDir = path.join(DIST_DIR, 'blog', data.slug);
         ensureDir(postDir);
         fs.writeFileSync(path.join(postDir, 'index.html'), pageHtml);
-
-        // Normalize date to string (gray-matter may return Date object)
-        const dateStr = data.date instanceof Date 
-            ? data.date.toISOString().split('T')[0] 
-            : String(data.date);
 
         posts.push({
             title: data.title,
