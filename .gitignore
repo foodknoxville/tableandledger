@@ -2,3 +2,6 @@ node_modules/
 dist/
 .DS_Store
 .claude/
+
+# Google Drive temp dir, never track
+.tmp.driveupload/
