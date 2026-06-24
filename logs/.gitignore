@@ -1,0 +1,5 @@
+# Local working notes only. Never publish anything from logs/ on this public repo.
+# Track the directory, ignore its contents.
+*
+!.gitkeep
+!.gitignore
