@@ -1,8 +1,10 @@
 /**
  * Table & Ledger -- Contact form handler
  *
- * Cloudflare Pages Function that receives POSTs from /ask/ and sends
- * an email via Resend. Deployed at /api/contact.
+ * Cloudflare Pages Function that receives POSTs from /ask/ and /waitlist/
+ * and sends an email via Resend. Deployed at /api/contact. The form_source
+ * field (whitelisted) selects the subject/label; anything else falls back
+ * to the Ask an Operator form.
  *
  * Env vars (set in Cloudflare Pages -> Settings -> Environment variables):
  *   RESEND_API_KEY   -- Bearer token from resend.com
@@ -63,9 +65,13 @@ export async function onRequestPost(context) {
         '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
     }[c]));
 
+    // Whitelisted form source -- the client cannot inject arbitrary subject text.
+    const source = data.form_source === 'waitlist' ? 'waitlist' : 'ask';
+    const formLabel = source === 'waitlist' ? 'Waitlist' : 'Ask an Operator';
+
     const subjectParts = [name];
     if (restaurant) subjectParts.push(restaurant);
-    const subject = `Ask an Operator: ${subjectParts.join(' / ')}`;
+    const subject = `${formLabel}: ${subjectParts.join(' / ')}`;
 
     const textBody = [
         `From: ${name} <${email}>`,
@@ -76,12 +82,12 @@ export async function onRequestPost(context) {
         message,
         '',
         '--',
-        'Sent from the Ask an Operator form on tableandledger.com'
+        `Sent from the ${formLabel} form on tableandledger.com`
     ].filter((line) => line !== null).join('\n');
 
     const htmlBody = `
         <div style="font-family: Georgia, serif; max-width: 640px; color: #1a1a18; line-height: 1.6;">
-            <p style="margin: 0 0 1.25rem; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #8a8780; text-transform: uppercase; letter-spacing: 0.12em;">Ask an Operator / tableandledger.com</p>
+            <p style="margin: 0 0 1.25rem; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #8a8780; text-transform: uppercase; letter-spacing: 0.12em;">${esc(formLabel)} / tableandledger.com</p>
             <p style="margin: 0 0 0.5rem;"><strong>From:</strong> ${esc(name)} &lt;${esc(email)}&gt;</p>
             ${restaurant ? `<p style="margin: 0 0 0.5rem;"><strong>Restaurant / Company:</strong> ${esc(restaurant)}</p>` : ''}
             ${locations ? `<p style="margin: 0 0 0.5rem;"><strong>Locations:</strong> ${esc(locations)}</p>` : ''}

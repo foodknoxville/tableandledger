@@ -321,6 +321,11 @@ function buildSitemap(posts) {
         <loc>https://tableandledger.com/ask/</loc>
         <lastmod>${now}</lastmod>
         <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://tableandledger.com/waitlist/</loc>
+        <lastmod>${now}</lastmod>
+        <priority>0.8</priority>
     </url>`;
 
     for (const post of posts) {
@@ -364,6 +369,7 @@ Table & Ledger is the consulting practice of Donnie McClanahan, a Forward Deploy
 - [Home](https://tableandledger.com/): Who Donnie is, published work and Square credentials, and what Table & Ledger does.
 - [Field Notes](https://tableandledger.com/blog/): Index of all essays and field notes.
 - [Ask an Operator](https://tableandledger.com/ask/): Free-form question form — a real answer from a working operator, no sales funnel.
+- [Join the Waitlist](https://tableandledger.com/waitlist/): Table & Ledger is currently booked; new engagements start from the waitlist, case by case.
 
 ## Field Notes
 `;
@@ -378,7 +384,8 @@ Table & Ledger is the consulting practice of Donnie McClanahan, a Forward Deploy
 
 - Email: donnie@tableandledger.com
 - Location: Waynesboro, Virginia (remote & travel)
-- Book a consult: https://app.squareup.com/appointments/book/f5s2qjfyx59pv9/LG2XSWE2S85VT/start
+- Availability: Currently booked. New engagements start from the waitlist, case by case.
+- Join the waitlist: https://tableandledger.com/waitlist/
 `;
 
     fs.writeFileSync(path.join(DIST_DIR, 'llms.txt'), txt);

@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ask an Operator | Table &amp; Ledger</title>
-    <meta name="description" content="Have a question about AI in your restaurant operation? Ask it. Real answer from a working operator.">
+    <title>Join the Waitlist | Table &amp; Ledger</title>
+    <meta name="description" content="Table &amp; Ledger is currently booked. New engagements start from the waitlist, case by case. Tell me what you need and where you stand.">
     <meta name="author" content="Donnie McClanahan">
 
-    <meta property="og:title" content="Ask an Operator | Table &amp; Ledger">
-    <meta property="og:description" content="Real answer from a working operator. Free, honest, no sales funnel.">
+    <meta property="og:title" content="Join the Waitlist | Table &amp; Ledger">
+    <meta property="og:description" content="Table &amp; Ledger is currently booked. New engagements start from the waitlist, case by case.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tableandledger.com/ask/">
-    <link rel="canonical" href="https://tableandledger.com/ask/">
+    <meta property="og:url" content="https://tableandledger.com/waitlist/">
+    <link rel="canonical" href="https://tableandledger.com/waitlist/">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -201,17 +201,17 @@
         </nav>
 
         <section class="page-header">
-            <span class="section-label">Ask an Operator</span>
-            <h1>Have a question about AI in your operation? Ask.</h1>
-            <p class="lede">No hourly meter. No sales funnel. If your question is clear, you will get a real answer from someone who has actually run the shift.</p>
-            <p class="lede">One thing to know: I am currently booked, and new paid engagements start from the <a href="/waitlist/">waitlist</a>. This form is for the question you want to ask before you are ready to hire anyone.</p>
+            <span class="section-label">The Waitlist</span>
+            <h1>The calendar is full. The waitlist is open.</h1>
+            <p class="lede">Table &amp; Ledger is a one-operator shop, and right now every engagement slot is taken. I do not take on work I cannot give full attention to.</p>
+            <p class="lede">New engagements start here. Tell me who you are and what you need. I take work off this list case by case, as capacity opens, and when something opens that fits your operation, you will hear from me directly. No deposit. No newsletter. Just a spot in line.</p>
         </section>
 
         <hr class="rule rule--heavy">
 
         <section class="form-wrap" id="form-section">
 
-            <form id="ask-form" novalidate>
+            <form id="waitlist-form" novalidate>
                 <!-- Honeypot: humans never see this. Bots fill it, we drop them. -->
                 <div class="honeypot" aria-hidden="true">
                     <label for="company_website">Company website (leave blank)</label>
@@ -245,22 +245,22 @@
                 </div>
 
                 <div class="field">
-                    <label for="message">What are you trying to solve?</label>
-                    <textarea id="message" name="message" rows="6" required placeholder="The more specific the question, the better the answer."></textarea>
+                    <label for="message">What do you need help with?</label>
+                    <textarea id="message" name="message" rows="6" required placeholder="Scope, timeline, what is driving it. Plain language is fine."></textarea>
                 </div>
 
                 <div class="submit-row">
-                    <button type="submit" id="submit-btn">Send</button>
-                    <span class="submit-note">Reply within two business days</span>
+                    <button type="submit" id="submit-btn">Join the Waitlist</button>
+                    <span class="submit-note">Confirmed within two business days</span>
                 </div>
 
                 <div class="form-message" id="form-message" role="alert" aria-live="polite"></div>
             </form>
 
             <div class="success-state" id="success-state">
-                <h2>Sent. I'll <em>reply soon</em>.</h2>
-                <p>Your message landed in my inbox. I read every one of these personally, and I will come back to you within two business days.</p>
-                <p>If you are asking because you want to hire me: I am currently booked, and new engagements start from the <a href="/waitlist/">waitlist</a>.</p>
+                <h2>You're on the <em>list</em>.</h2>
+                <p>Your note landed in my inbox. I read every one of these personally, and I will confirm your spot within two business days.</p>
+                <p>When capacity opens and the fit is right, I will reach out directly. If your situation changes in the meantime, email <a href="mailto:donnie@tableandledger.com">donnie@tableandledger.com</a>.</p>
                 <a href="/" class="back-link">Back to the homepage &rarr;</a>
             </div>
 
@@ -275,7 +275,7 @@
 
     <script>
         (function() {
-            const form = document.getElementById('ask-form');
+            const form = document.getElementById('waitlist-form');
             const btn = document.getElementById('submit-btn');
             const msg = document.getElementById('form-message');
             const section = document.getElementById('form-section');
@@ -298,19 +298,19 @@
                 const message = form.message.value.trim();
 
                 if (!name || !email || !message) {
-                    showError('Name, email, and your message are all required.');
+                    showError('Name, email, and what you need help with are all required.');
                     return;
                 }
 
                 btn.disabled = true;
-                btn.textContent = 'Sending...';
+                btn.textContent = 'Joining...';
 
                 try {
                     const res = await fetch('/api/contact', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
-                            form_source: 'ask',
+                            form_source: 'waitlist',
                             name: form.name.value,
                             email: form.email.value,
                             restaurant: form.restaurant.value,
@@ -326,7 +326,7 @@
                     if (!res.ok || data.error) {
                         showError(data.error || 'Something went wrong. Try again in a moment, or email donnie@tableandledger.com directly.');
                         btn.disabled = false;
-                        btn.textContent = 'Send';
+                        btn.textContent = 'Join the Waitlist';
                         return;
                     }
 
@@ -336,7 +336,7 @@
                 } catch (err) {
                     showError('Network hiccup. Try again, or email donnie@tableandledger.com directly.');
                     btn.disabled = false;
-                    btn.textContent = 'Send';
+                    btn.textContent = 'Join the Waitlist';
                 }
             });
         })();

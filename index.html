@@ -166,7 +166,9 @@
     .hero-divider { width: 220px; max-width: 62%; height: 1px; background: var(--brass); opacity: 0.75; margin: 0 0 1.5rem; position: relative; }
     .hero-divider::after { content: ''; position: absolute; left: 50%; top: -2px; width: 5px; height: 5px; background: var(--brass-bright); border-radius: 50%; transform: translateX(-50%); }
     .hero-lede { font-size: 1.16rem; line-height: 1.65; color: var(--ink); max-width: 540px; text-shadow: 0 1px 18px rgba(0,0,0,0.55); }
-    .hero-ctas { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 2.25rem; }
+    .hero-status { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brass-bright); margin-top: 2.25rem; display: flex; align-items: center; gap: 0.6rem; text-shadow: 0 1px 18px rgba(0,0,0,0.55); }
+    .hero-status::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--brass-bright); box-shadow: 0 0 10px rgba(220,186,114,0.7); flex-shrink: 0; }
+    .hero-ctas { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 1rem; }
     .cta { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.16em; padding: 0.95rem 1.7rem; text-decoration: none; border: 1px solid var(--brass); transition: all 0.2s; display: inline-block; }
     .cta--primary { background: var(--brass); color: var(--study-deep); font-weight: 500; }
     .cta--primary:hover { background: var(--brass-bright); border-color: var(--brass-bright); box-shadow: 0 0 28px rgba(176,138,62,0.3); }
@@ -214,8 +216,8 @@
     .brass-corner.tl { top: -7px; left: -7px; border-right: none; border-bottom: none; }
     .brass-corner.br { bottom: -7px; right: -7px; border-left: none; border-top: none; }
     .bio-text p { margin-bottom: 1.1rem; color: var(--ink); font-size: 1.02rem; }
-    .bio-text a { color: var(--brass-bright); text-decoration: none; border-bottom: 1px solid rgba(205,164,92,0.4); }
-    .bio-text a:hover { color: var(--lamp); }
+    .bio-text a, section > p a { color: var(--brass-bright); text-decoration: none; border-bottom: 1px solid rgba(205,164,92,0.4); }
+    .bio-text a:hover, section > p a:hover { color: var(--lamp); }
     .bio-stats { display: flex; gap: 2.25rem; margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); flex-wrap: wrap; }
     .stat { display: flex; flex-direction: column; max-width: 150px; }
     .stat-number { font-family: 'Bodoni Moda', Didot, serif; font-size: 2.1rem; font-weight: 500; color: var(--brass-bright); line-height: 1; }
@@ -309,6 +311,7 @@
             <a href="#work">Published Work</a>
             <a href="#services">What I Do</a>
             <a href="/ask/">Ask</a>
+            <a href="/waitlist/">Waitlist</a>
             <a href="#contact">Contact</a>
         </nav>
 
@@ -323,8 +326,9 @@
                 <h1>The restaurant line was <em>distributed computing</em> before anyone called it that.</h1>
                 <div class="hero-divider"></div>
                 <p class="hero-lede">Forward Deployed Operator, founder of Table &amp; Ledger. Thirty years running restaurants; now I put AI to work inside other operators'. Square AI Champion. Not hype. Not theory. Operational results.</p>
+                <div class="hero-status">Currently booked &middot; Waitlist open</div>
                 <div class="hero-ctas">
-                    <a href="https://app.squareup.com/appointments/book/f5s2qjfyx59pv9/LG2XSWE2S85VT/start" class="cta cta--primary" target="_blank" rel="noopener">Book a Consult</a>
+                    <a href="/waitlist/" class="cta cta--primary">Join the Waitlist</a>
                     <a href="/ask/" class="cta cta--secondary">Ask an Operator</a>
                 </div>
                 <div class="triad">
@@ -535,11 +539,12 @@
         <section id="contact" class="reveal">
             <span class="section-label">Get In Touch</span>
             <h2>Let's talk about what AI can actually do for your operation.</h2>
+            <p>I am currently booked. New engagements start from the <a href="/waitlist/">waitlist</a>, case by case &mdash; the form takes two minutes.</p>
             <div class="contact-grid">
                 <div class="contact-method"><div class="contact-type">Email</div><a href="mailto:donnie@tableandledger.com">donnie@tableandledger.com</a></div>
                 <div class="contact-method"><div class="contact-type">LinkedIn</div><a href="https://www.linkedin.com/in/donniemcclanahan" target="_blank" rel="noopener">donniemcclanahan</a></div>
                 <div class="contact-method"><div class="contact-type">Location</div><span>Waynesboro, Virginia</span></div>
-                <div class="contact-method"><div class="contact-type">Availability</div><span>Remote &amp; Travel</span></div>
+                <div class="contact-method"><div class="contact-type">Availability</div><a href="/waitlist/">Currently booked &mdash; waitlist open</a></div>
             </div>
         </section>
 
