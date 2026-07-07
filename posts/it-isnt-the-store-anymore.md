@@ -3,7 +3,7 @@ title: It Isn't the Store Anymore
 date: 2026-07-06
 category: Field Note
 slug: it-isnt-the-store-anymore
-lede: "Square asked me five questions for their piece on whether the American Dream of owning a business still exists, and ran two lines. The honest answer is bigger than two lines: the dream is alive, and it moved. People still want to build and own something — it just isn't the store anymore. It's the freedom."
+lede: "Square asked me five questions for their piece on whether the American Dream of owning a business still exists, and ran two lines. The honest answer is bigger than two lines: the dream is alive, and it moved. People still want to build and own something. It just isn't the store anymore. It's the freedom."
 ---
 
 Square published a piece today for the country's 250th birthday, asking whether the American Dream of owning a business still exists. They asked me five questions for it and ran two lines, which is how these things work, and the two they picked were good ones. The piece is here: [The American Dream of Business Ownership Is Alive and Well – But Evolving](https://squareup.com/us/en/press/american-dream).

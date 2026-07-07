@@ -3,7 +3,8 @@ title: "Beyond Systems of Intelligence: The Ambient Manager and the Third Layer 
 date: 2026-05-03
 category: Essay
 slug: ambient-manager-third-layer-restaurant-ai
-lede: AI in restaurants needs three layers, not two — a system that watches, a system that remembers, and a system that acts. The platforms that bet on open are betting on the operators who matter most over the next decade.
+lede: "AI in restaurants needs three layers, not two: a system that watches, a system that remembers, and a system that acts. The platforms that bet on open are betting on the operators who matter most over the next decade."
+image: /ambient-kitchen.png
 ---
 
 ![A retro-futurist domed kitchen with copper cooking surfaces, a chef plating a dish, and curved booths in teal and rust](/ambient-kitchen.png)

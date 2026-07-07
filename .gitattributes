@@ -8,3 +8,10 @@
 *.md   text eol=lf
 *.css  text eol=lf
 *.js   text eol=lf
+
+# Images are binary; never run them through text normalization.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.webp binary
+*.ico  binary

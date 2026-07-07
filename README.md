@@ -36,6 +36,27 @@ Your markdown content here.
 | `category` | Yes | Label above title. Examples: Case Study, Essay, Musing, Field Note |
 | `slug` | Yes | URL path. Post will live at `/blog/{slug}/` |
 | `lede` | Yes | Summary paragraph. Shows italic below title and on blog index. |
+| `image` | No | Site-absolute path to the post's social-card image (e.g. `/images/my-slug/photo.jpg`). Used for `og:image` and structured data. Posts without one fall back to the portrait. |
+
+### Photos in posts
+
+Put image files in `static/images/{slug}/` (any subdirectory of `static/` is copied
+to `dist/` on build, so `static/images/my-post/kitchen.jpg` is served at
+`/images/my-post/kitchen.jpg`).
+
+Embed with standard markdown:
+
+```
+![What the photo shows, for screen readers](/images/my-post/kitchen.jpg)
+*Optional caption goes here, italic, on the very next line.*
+```
+
+Images render centered at article width with a border; the italic line directly
+after an image renders as a centered caption. Keep files web-sized — aim for
+300 KB or less (resize to ~1400px wide before committing).
+
+To use a photo as the post's link-preview card on LinkedIn/X, also set it in
+frontmatter: `image: /images/my-post/kitchen.jpg`.
 
 ### Custom HTML in markdown
 

@@ -116,6 +116,12 @@ function buildPosts() {
         // Person/Organization @ids defined on the homepage, so "Donnie McClanahan"
         // resolves to one entity across the whole site. JSON.stringify handles
         // escaping of quotes/specials in the title and lede.
+        // Optional frontmatter `image:` (site-absolute path, e.g. /images/slug/photo.jpg)
+        // becomes the social card; posts without one fall back to the portrait.
+        const ogImage = data.image
+            ? `https://tableandledger.com${data.image}`
+            : 'https://tableandledger.com/donnie.jpg';
+
         const articleUrl = `https://tableandledger.com/blog/${data.slug}/`;
         const articleJsonLd = JSON.stringify({
             '@context': 'https://schema.org',
@@ -127,7 +133,7 @@ function buildPosts() {
             url: articleUrl,
             mainEntityOfPage: articleUrl,
             articleSection: data.category,
-            image: 'https://tableandledger.com/donnie.jpg',
+            image: ogImage,
             author: {
                 '@type': 'Person',
                 '@id': 'https://tableandledger.com/#donnie',
@@ -149,6 +155,7 @@ function buildPosts() {
             category: data.category,
             slug: data.slug,
             lede: data.lede,
+            og_image: ogImage,
             content: htmlContent,
             article_jsonld: articleJsonLd
         });
@@ -210,13 +217,21 @@ function buildBlogIndex(posts) {
 function copyStatic() {
     if (!fs.existsSync(STATIC_DIR)) return;
 
-    const files = fs.readdirSync(STATIC_DIR);
-    for (const file of files) {
-        fs.copyFileSync(
-            path.join(STATIC_DIR, file),
-            path.join(DIST_DIR, file)
-        );
-        console.log(`  Copied: /${file}`);
+    const entries = fs.readdirSync(STATIC_DIR, { withFileTypes: true });
+    for (const entry of entries) {
+        if (entry.isDirectory()) {
+            copyDirRecursive(
+                path.join(STATIC_DIR, entry.name),
+                path.join(DIST_DIR, entry.name)
+            );
+            console.log(`  Copied: /${entry.name}/`);
+        } else {
+            fs.copyFileSync(
+                path.join(STATIC_DIR, entry.name),
+                path.join(DIST_DIR, entry.name)
+            );
+            console.log(`  Copied: /${entry.name}`);
+        }
     }
 }
 
